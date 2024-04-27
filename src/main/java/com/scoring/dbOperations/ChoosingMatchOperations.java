@@ -17,16 +17,15 @@ import org.hibernate.Transaction;
  *
  * @author AuroLed
  */
-public class ChoosingMatchOperations implements TournamentMatchesRepo{
+public class ChoosingMatchOperations implements TournamentMatchesRepo {
 
     Session session = null;
     Transaction transaction = null;
 
-
     @Override
     public List<TeamBean> getAllTeams() {
-        
-       List<TeamBean> teamsList = null;
+
+        List<TeamBean> teamsList = null;
         session = HibernateUtils.getSession();
 
         try {
@@ -34,7 +33,7 @@ public class ChoosingMatchOperations implements TournamentMatchesRepo{
             String query = "FROM TeamBean";
 
             teamsList = session.createQuery(query).getResultList();
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -44,6 +43,31 @@ public class ChoosingMatchOperations implements TournamentMatchesRepo{
         }
 
         return teamsList;
+    }
+
+    @Override
+    public String getLastUpdateMatchCode(String match_between) {
+
+        session = HibernateUtils.getSession();
+
+        String query = "SELECT match_code FROM MatchDetails WHERE match_code LIKE :matchName ORDER BY match_code DESC 1 LIMIT 1";
+
+        String matchCode = null;
+
+        try {
+            session.beginTransaction();
+            matchCode = (String) session.createQuery(query).setParameter("matchName", match_between).getSingleResult();
+
+        } catch (NullPointerException e) {
+            System.out.println("No Data Present In The Database Or Database is Empty");
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+        return matchCode;
+
     }
 
 }

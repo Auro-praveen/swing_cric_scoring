@@ -19,16 +19,16 @@ public class MainScoringForm extends javax.swing.JFrame {
      * Creates new form MainScoringForm
      */
     public MainScoringForm() {
-        
+
         initComponents();
         this.getContentPane().setBackground(new Color(29, 99, 97));
         this.setBounds(0, 0, 1300, 720);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+
         loadOperations();
-        
+
     }
-    
+
     private void loadOperations() {
         menu_scrollpane.setVisible(false);
         edit_scrollpane.setVisible(false);
@@ -36,49 +36,48 @@ public class MainScoringForm extends javax.swing.JFrame {
         match_scrollpane.setVisible(false);
         settings_scrollpane.setVisible(false);
     }
-    
+
     private void scrollPaneVisibilityHandler(String menuType) {
-        
-        
+
         System.out.println("function called called ");
-        
+
         if (menuType == "menu") {
-            
+
             edit_scrollpane.setVisible(false);
             teams_scrollpane.setVisible(false);
             match_scrollpane.setVisible(false);
             settings_scrollpane.setVisible(false);
-            
-        } else if(menuType == "edit") {
-            
+
+        } else if (menuType == "edit") {
+
             menu_scrollpane.setVisible(false);
             teams_scrollpane.setVisible(false);
             match_scrollpane.setVisible(false);
             settings_scrollpane.setVisible(false);
-        
-        } else if(menuType == "teams") {
-            
+
+        } else if (menuType == "teams") {
+
             menu_scrollpane.setVisible(false);
             edit_scrollpane.setVisible(false);
             match_scrollpane.setVisible(false);
             settings_scrollpane.setVisible(false);
-        
-        } else if(menuType == "match") {
-            
+
+        } else if (menuType == "match") {
+
             menu_scrollpane.setVisible(false);
             edit_scrollpane.setVisible(false);
             teams_scrollpane.setVisible(false);
             settings_scrollpane.setVisible(false);
-        
-        } else if(menuType == "settings") {
-            
+
+        } else if (menuType == "settings") {
+
             menu_scrollpane.setVisible(false);
             edit_scrollpane.setVisible(false);
             teams_scrollpane.setVisible(false);
             match_scrollpane.setVisible(false);
 //            settings_scrollpane.setVisible(false);
         }
-        
+
     }
 
     /**
@@ -243,7 +242,7 @@ public class MainScoringForm extends javax.swing.JFrame {
             menu_scrollpane.setVisible(true);
             scrollPaneVisibilityHandler("menu");
         }
-        
+
 
     }//GEN-LAST:event_menu_btnMouseClicked
 
@@ -265,7 +264,7 @@ public class MainScoringForm extends javax.swing.JFrame {
             teams_scrollpane.setVisible(true);
             scrollPaneVisibilityHandler("teams");
         }
-        
+
     }//GEN-LAST:event_teams_menuBtnMouseClicked
 
     private void match_menuBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_match_menuBtnMouseClicked
@@ -276,7 +275,7 @@ public class MainScoringForm extends javax.swing.JFrame {
             match_scrollpane.setVisible(true);
             scrollPaneVisibilityHandler("match");
         }
-        
+
     }//GEN-LAST:event_match_menuBtnMouseClicked
 
     private void settings_menuBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settings_menuBtnMouseClicked
@@ -290,24 +289,39 @@ public class MainScoringForm extends javax.swing.JFrame {
     }//GEN-LAST:event_settings_menuBtnMouseClicked
 
     private void teams_listValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_teams_listValueChanged
-        
+
         // TODO add your handling code here:
-        
         if (evt.getValueIsAdjusting()) {
-            
+
             System.out.println("com.scoring.GUI.MainScoringForm.teams_listValueChanged()=================== callled");
-            
-            TeamMatchVariables.tournamentType = teams_list.getSelectedValue();
-            teams_scrollpane.setVisible(false);
-            new TeamSelectionForm().setVisible(true);
+
+            if (teams_list.getSelectedValue() == "Choose Teams") {
+                
+                teams_scrollpane.setVisible(false);
+                TeamMatchVariables.tournamentType = teams_list.getSelectedValue();
+                new TeamSelectionForm().setVisible(true);
+                
+            } else if (teams_list.getSelectedValue() == "Add Players") {
+
+                teams_scrollpane.setVisible(false);
+                TeamMatchVariables.tournamentType = teams_list.getSelectedValue();
+                new PlayerSelectionForm().setVisible(true);
+                
+            } else {
+
+                teams_scrollpane.setVisible(false);
+                TeamMatchVariables.tournamentType = teams_list.getSelectedValue();
+                new ChooseCaptainForm().setVisible(true);
+                
+            }
+
         }
-         
+
     }//GEN-LAST:event_teams_listValueChanged
 
     /**
      * @param args the command line arguments
      */
-    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

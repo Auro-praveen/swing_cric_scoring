@@ -7,6 +7,7 @@ package com.scoring.services;
 
 import com.scoring.beans.TeamBean;
 import com.scoring.dbOperations.ChoosingMatchOperations;
+import com.scoring.globalvariables.TeamMatchVariables;
 import com.scoring.repositories.TournamentMatchesRepo;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +33,7 @@ public class TeamOperationsAndServices{
         if (!teambeanList.isEmpty()) {
             teambeanList.forEach( TeamBean -> {
                 teams.add(TeamBean.getTeam_full_name());
+                TeamMatchVariables.selectedTeamsMap.put(TeamBean.getTeam_full_name(), TeamBean.getTeam_name());
             } );
         } 
       
