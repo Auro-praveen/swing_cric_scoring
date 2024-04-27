@@ -84,12 +84,15 @@ public class MatchDetails implements Serializable{
 
     @OneToMany(mappedBy = "matchDetails", cascade = CascadeType.ALL)
     private List<SecondInningsBowling> secondInningsBowlingList;
+    
+    @OneToMany(mappedBy = "matchDetails", cascade = CascadeType.ALL)
+    private List<SuperOvers> superOverses;
 
     public MatchDetails() {
 
     }
 
-    public MatchDetails(String match_code, String matches_between, String home_team_name, String home_team_full_name, String away_team_name, String away_team_full_name, String team_versus, String toss_win_team, String toss_win_choose_type, short total_overs, String home_team_captain, String away_team_captain, String state, String home_town, String statuim, String venue_type, short first_innings_total, short second_innings_total, double first_innings_overs_played, double second_innings_overs_played, short first_innings_total_wickets, short second_innings_total_wickets, String result, short match_no, String umpires, String tv_umpires, Date matchDate, boolean super_over, short super_over_count, short reviews_remaining, List<FirstInningsBatting> firstInningsBattingList, List<FirstInningsBowling> firstInningsBowlingList, List<SecondInningsBatting> secondInningsBattingList, List<SecondInningsBowling> secondInningsBowlingList) {
+    public MatchDetails(String match_code, String matches_between, String home_team_name, String home_team_full_name, String away_team_name, String away_team_full_name, String team_versus, String toss_win_team, String toss_win_choose_type, short total_overs, String home_team_captain, String away_team_captain, String state, String home_town, String statuim, String venue_type, short first_innings_total, short second_innings_total, double first_innings_overs_played, double second_innings_overs_played, short first_innings_total_wickets, short second_innings_total_wickets, String result, short match_no, String umpires, String tv_umpires, Date matchDate, boolean super_over, short super_over_count, short reviews_remaining, List<FirstInningsBatting> firstInningsBattingList, List<FirstInningsBowling> firstInningsBowlingList, List<SecondInningsBatting> secondInningsBattingList, List<SecondInningsBowling> secondInningsBowlingList, List<SuperOvers> superOverses) {
         this.match_code = match_code;
         this.matches_between = matches_between;
         this.home_team_name = home_team_name;
@@ -124,7 +127,10 @@ public class MatchDetails implements Serializable{
         this.firstInningsBowlingList = firstInningsBowlingList;
         this.secondInningsBattingList = secondInningsBattingList;
         this.secondInningsBowlingList = secondInningsBowlingList;
+        this.superOverses = superOverses;
     }
+
+
 
     public String getMatch_code() {
         return match_code;
@@ -396,6 +402,14 @@ public class MatchDetails implements Serializable{
 
     public void setSecondInningsBowlingList(List<SecondInningsBowling> secondInningsBowlingList) {
         this.secondInningsBowlingList = secondInningsBowlingList;
+    }
+
+    public List<SuperOvers> getSuperOverses() {
+        return superOverses;
+    }
+
+    public void setSuperOverses(List<SuperOvers> superOverses) {
+        this.superOverses = superOverses;
     }
     
     

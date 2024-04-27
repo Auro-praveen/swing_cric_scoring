@@ -38,14 +38,15 @@ public class HibernateUtils {
                 .addAnnotatedClass(TeamBean.class)
                 .addAnnotatedClass(PlayersBean.class)
                 .addAnnotatedClass(SuperOvers.class)
+                .addAnnotatedClass(SuperOverBatting.class)
+                .addAnnotatedClass(SuperOverBowling.class)
                 .addAnnotatedClass(MatchDetails.class)
                 .addAnnotatedClass(CurrentMatchPlayers.class)
                 .addAnnotatedClass(FirstInningsBatting.class)
                 .addAnnotatedClass(FirstInningsBowling.class)
                 .addAnnotatedClass(SecondInningsBatting.class)
                 .addAnnotatedClass(SecondInningsBowling.class)
-                .addAnnotatedClass(SuperOverBatting.class)
-                .addAnnotatedClass(SuperOverBowling.class)
+
                 .buildSessionFactory();
     }
     

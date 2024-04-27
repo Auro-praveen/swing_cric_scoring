@@ -13,6 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -44,20 +46,23 @@ public class SuperOvers implements Serializable {
     private String super_over_match_id;
     @Column(length = 50)
     private String team_versus;
-    @Column(length = 50)
-    private String match_code;
+    private short penalties;
 
     @OneToMany(mappedBy = "superOvers", cascade = CascadeType.ALL)
     private List<SuperOverBatting> superOverBattingList;
 
     @OneToMany(mappedBy = "superOvers", cascade = CascadeType.ALL)
     private List<SuperOverBowling> superOverBowlingList;
+    
+    @ManyToOne
+    @JoinColumn(name =  "match_code")
+    private MatchDetails matchDetails;
 
     public SuperOvers() {
 
     }
 
-    public SuperOvers(int super_over_id, short first_bat_score, short second_bat_score, short first_fallen_wickets, short second_fallen_wickets, double first_inn_overplayer, double second_inn_overplayed, String first_batting_team, String second_batting_team, String match_result, String super_over_match_id, String team_versus, String match_code, List<SuperOverBatting> superOverBattingList, List<SuperOverBowling> superOverBowlingList) {
+    public SuperOvers(int super_over_id, short first_bat_score, short second_bat_score, short first_fallen_wickets, short second_fallen_wickets, double first_inn_overplayer, double second_inn_overplayed, String first_batting_team, String second_batting_team, String match_result, String super_over_match_id, String team_versus, short penalties, List<SuperOverBatting> superOverBattingList, List<SuperOverBowling> superOverBowlingList, MatchDetails matchDetails) {
         this.super_over_id = super_over_id;
         this.first_bat_score = first_bat_score;
         this.second_bat_score = second_bat_score;
@@ -70,10 +75,11 @@ public class SuperOvers implements Serializable {
         this.match_result = match_result;
         this.super_over_match_id = super_over_match_id;
         this.team_versus = team_versus;
-        this.match_code = match_code;
+
+        this.penalties = penalties;
         this.superOverBattingList = superOverBattingList;
         this.superOverBowlingList = superOverBowlingList;
-
+        this.matchDetails = matchDetails;
     }
 
     public void setSuper_over_id(int super_over_id) {
@@ -124,9 +130,6 @@ public class SuperOvers implements Serializable {
         this.team_versus = team_versus;
     }
 
-    public void setMatch_code(String match_code) {
-        this.match_code = match_code;
-    }
 
     public void setSuperOverBattingList(List<SuperOverBatting> superOverBattingList) {
         this.superOverBattingList = superOverBattingList;
@@ -184,10 +187,6 @@ public class SuperOvers implements Serializable {
         return team_versus;
     }
 
-    public String getMatch_code() {
-        return match_code;
-    }
-
     public List<SuperOverBatting> getSuperOverBattingList() {
         return superOverBattingList;
     }
@@ -195,5 +194,23 @@ public class SuperOvers implements Serializable {
     public List<SuperOverBowling> getSuperOverBowlingList() {
         return superOverBowlingList;
     }
+
+    public short getPenalties() {
+        return penalties;
+    }
+
+    public void setPenalties(short penalties) {
+        this.penalties = penalties;
+    }
+
+    public MatchDetails getMatchDetails() {
+        return matchDetails;
+    }
+
+    public void setMatchDetails(MatchDetails matchDetails) {
+        this.matchDetails = matchDetails;
+    }
+       
+    
     
 }

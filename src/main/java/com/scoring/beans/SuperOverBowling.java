@@ -21,7 +21,7 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name = "supover_bowling")
+@Table(name = "superover_bowl")
 public class SuperOverBowling implements Serializable {
     
     @Id
@@ -44,13 +44,13 @@ public class SuperOverBowling implements Serializable {
     
     @ManyToOne
     @JoinColumn(name = "super_over_id")
-    private SuperOvers superOver;
+    private SuperOvers superOvers;
     
     public SuperOverBowling() {
         
     }
 
-    public SuperOverBowling(long sup_bowling_id, String sup_bowler_name, String sup_bowler_fullname, short sup_bowler_jersey, double sup_overs_bowled, double economy, short wickets_taken, short runs_given, short extras, short no_balls, short wides, String team, SuperOvers superOver) {
+    public SuperOverBowling(long sup_bowling_id, String sup_bowler_name, String sup_bowler_fullname, short sup_bowler_jersey, double sup_overs_bowled, double economy, short wickets_taken, short runs_given, short extras, short no_balls, short wides, String team, SuperOvers superOvers) {
         this.sup_bowling_id = sup_bowling_id;
         this.sup_bowler_name = sup_bowler_name;
         this.sup_bowler_fullname = sup_bowler_fullname;
@@ -63,7 +63,7 @@ public class SuperOverBowling implements Serializable {
         this.no_balls = no_balls;
         this.wides = wides;
         this.team = team;
-        this.superOver = superOver;
+        this.superOvers = superOvers;
     }
 
     public void setSup_bowling_id(long sup_bowling_id) {
@@ -114,8 +114,8 @@ public class SuperOverBowling implements Serializable {
         this.team = team;
     }
 
-    public void setSuperOver(SuperOvers superOver) {
-        this.superOver = superOver;
+    public void setSuperOver(SuperOvers superOvers) {
+        this.superOvers = superOvers;
     }
 
     public long getSup_bowling_id() {
@@ -167,7 +167,7 @@ public class SuperOverBowling implements Serializable {
     }
 
     public SuperOvers getSuperOver() {
-        return superOver;
+        return superOvers;
     }
 
 }

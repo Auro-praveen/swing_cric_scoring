@@ -9,7 +9,10 @@ import com.scoring.services.TeamOperationsAndServices;
 import java.awt.Color;
 import java.awt.PopupMenu;
 import java.util.List;
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.Popup;
 
 /**
@@ -21,30 +24,47 @@ public class TeamSelectionForm extends javax.swing.JFrame {
     /**
      * Creates new form TeamSelectionForm
      */
-    
     List<String> teamsList = null;
+
     public TeamSelectionForm() {
         initComponents();
-        this.setSize(500, 800);
+
+//        home_team_scrollpane.setVisible(false);
+//        away_team_scrollpane.setVisible(false);
+
+        this.setSize(800, 500);
         this.getContentPane().setBackground(new Color(63, 115, 113));
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        
-        
-        
+
         TeamOperationsAndServices teamOperationsAndServices = new TeamOperationsAndServices();
         teamsList = teamOperationsAndServices.getAllTeamNames();
-        
+
         addTeamsToTeamselectionList(teamsList);
-        
+
     }
-    
+
     private void addTeamsToTeamselectionList(List<String> allTeamList) {
-        
-        PopupMenu menu = new PopupMenu();
-        
-        menu = (PopupMenu) allTeamList;
-        
-        home_team_scrollpane.add(menu);
+
+        if (allTeamList.size() > 0) {
+            DefaultListModel<String> teamListModel = new DefaultListModel<>();
+
+            allTeamList.forEach(teams -> {
+                teamListModel.addElement(teams);
+
+            });
+
+            home_team_list.setModel(teamListModel);// = (JList<String>) teamListModel;
+            away_team_list.setModel(teamListModel);
+
+//        home_team_scrollpane.add(home_team_list);
+//        away_team_scrollpane.add(away_team_list);
+//            home_team_scrollpane.setVisible(true);
+//            away_team_scrollpane.setVisible(true);
+
+        } else {
+            JOptionPane.showMessageDialog(this, "ERROR : No Teams Found, Please Add The Team And Start A Match", "No Teams", JOptionPane.ERROR_MESSAGE);
+        }
+
     }
 
     /**
