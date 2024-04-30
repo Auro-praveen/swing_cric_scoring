@@ -184,14 +184,21 @@ public class TeamSelectionForm extends javax.swing.JFrame {
         
         if (selected_hometeam != null && selected_awayteam != null) {
             
-            String matchBetween = TeamMatchVariables.selectedTeamsMap.get(selected_hometeam) + TeamMatchVariables.selectedTeamsMap.get(selected_awayteam);
+            String hTeamName = String.valueOf(TeamMatchVariables.selectedTeamsMap.get(selected_hometeam).get("teamShortName"));
+            String aTeamName = String.valueOf(TeamMatchVariables.selectedTeamsMap.get(selected_awayteam).get("teamShortName"));
             
-            String currentMatchCode = null;
+            String matchBetween = hTeamName + aTeamName;
+            
+            System.out.println("Matches between between ======= "+matchBetween);
+            
+            String currentMatchCode = matchBetween;
             String oldMatchCode = null;
             int m_code;
+            
             try {
                oldMatchCode =  new ChoosingMatchOperations().getLastUpdateMatchCode(matchBetween);
-            } catch (NullPointerException e) {
+            } catch ( Exception e) {
+                e.printStackTrace();
             }
             
             if (oldMatchCode != null) {
@@ -203,15 +210,23 @@ public class TeamSelectionForm extends javax.swing.JFrame {
             
             currentMatchCode += m_code;
             
+            System.out.println("Current match code is is is ===========" +currentMatchCode);
+            
             TeamMatchVariables.matchCode = currentMatchCode;
             MatchDetails matchDetails = new MatchDetails();
             
             matchDetails.setMatch_code(currentMatchCode);
-            matchDetails.setHome_team_name(TeamMatchVariables.selectedTeamsMap.get(selected_hometeam));
+            matchDetails.setHome_team_name(hTeamName);
             matchDetails.setHome_team_full_name(selected_hometeam);
             
-            matchDetails.setAway_team_name(TeamMatchVariables.selectedTeamsMap.get(selected_awayteam));
+            matchDetails.setAway_team_name(aTeamName);
             matchDetails.setAway_team_full_name(selected_awayteam);
+            
+            TeamMatchVariables.homeTeamId = Integer.valueOf(String.valueOf(TeamMatchVariables.selectedTeamsMap.get(selected_hometeam).get("teamId")));
+            TeamMatchVariables.awayTeamId = Integer.valueOf(String.valueOf(TeamMatchVariables.selectedTeamsMap.get(selected_awayteam).get("teamId")));
+            
+            TeamMatchVariables.homeTeamShortName = hTeamName;
+            TeamMatchVariables.awayTeamShortName = aTeamName;
             
             TeamMatchVariables.selectedTeamsObjectMap.put(currentMatchCode, matchDetails);
             this.setVisible(false);

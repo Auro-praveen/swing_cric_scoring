@@ -8,19 +8,26 @@ package com.scoring.reference.bean;
 /**
  *
  * @author AuroLed
+ * 
  */
+
 public class IndividualPlayerBean {
+    
     private String name;
     private String fullName;
     private int jerseyNo;
-    private String teamPlayingFor;
+    private String teamId;
 //    private String team_Full_name
+    
+    public IndividualPlayerBean() {
+        
+    }
 
-    public IndividualPlayerBean(String name, String fullName, int jerseyNo, String teamPlayingFor) {
+    public IndividualPlayerBean(String name, String fullName, int jerseyNo, String teamId) {
         this.name = name;
         this.fullName = fullName;
         this.jerseyNo = jerseyNo;
-        this.teamPlayingFor = teamPlayingFor;
+        this.teamId = teamId;
     }
 
     public String getName() {
@@ -47,12 +54,14 @@ public class IndividualPlayerBean {
         this.jerseyNo = jerseyNo;
     }
 
-    public String getTeamPlayingFor() {
-        return teamPlayingFor;
+    public String getTeamId() {
+        return teamId;
     }
 
-    public void setTeamPlayingFor(String teamPlayingFor) {
-        this.teamPlayingFor = teamPlayingFor;
+    public void setTeamId(String teamId) {
+        this.teamId = teamId;
     }
+
+    
     
 }

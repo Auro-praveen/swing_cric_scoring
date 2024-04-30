@@ -5,7 +5,10 @@
  */
 package com.scoring.globalvariables;
 
+import com.scoring.beans.CurrentMatchPlayers;
 import com.scoring.beans.MatchDetails;
+import com.scoring.beans.PlayersBean;
+import com.scoring.reference.bean.BothTeamPlayers;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -13,13 +16,20 @@ import java.util.Map;
 /**
  *
  * @author AuroLed
+ * 
  */
+
 public class TeamMatchVariables {
     
-    public static String tournamentType, homeTeam, awayTeam, matchCode;
+    public static String tournamentType, homeTeam, awayTeam, matchCode, homeTeamShortName, awayTeamShortName;
     public static ArrayList<String> teamShortNameList, teamFullNameList;
     public static Map<String, MatchDetails> selectedTeamsObjectMap = new HashMap<>();
-    public static Map<String, String> selectedTeamsMap = new HashMap<>();
     
+    // parameter for shortName = teamShortName AND for the team id = teamId
+    public static Map<String, Map<String, Object>> selectedTeamsMap = new HashMap<>();      
+    public static Map<String, ArrayList<PlayersBean>> bothTeamPlayersGlobalMap = new HashMap<>();
+    public static Map<String, ArrayList<CurrentMatchPlayers>> selectedPlayersMap = new HashMap<>();
+
     
+    public static int homeTeamId, awayTeamId;
 }

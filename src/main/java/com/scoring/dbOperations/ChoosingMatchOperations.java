@@ -6,10 +6,14 @@
 package com.scoring.dbOperations;
 
 import com.hibernate.utils.sessionService.HibernateUtils;
+import com.scoring.beans.PlayersBean;
 import com.scoring.beans.TeamBean;
 import com.scoring.globalvariables.TeamMatchVariables;
+import com.scoring.reference.bean.IndividualPlayerBean;
 import com.scoring.repositories.TournamentMatchesRepo;
+import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.NoResultException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -50,17 +54,18 @@ public class ChoosingMatchOperations implements TournamentMatchesRepo {
 
         session = HibernateUtils.getSession();
 
-        String query = "SELECT match_code FROM MatchDetails WHERE match_code LIKE :matchName ORDER BY match_code DESC 1 LIMIT 1";
+        String query = "SELECT match_code FROM MatchDetails WHERE match_code LIKE (:matchName) ORDER BY match_code DESC";
 
         String matchCode = null;
 
         try {
-            session.beginTransaction();
-            matchCode = (String) session.createQuery(query).setParameter("matchName", match_between).getSingleResult();
 
-        } catch (NullPointerException e) {
+            session.beginTransaction();
+            matchCode = (String) session.createQuery(query).setParameter("matchName", "%"+match_between+"%").getSingleResult();
+
+        } catch (NoResultException e) {
             System.out.println("No Data Present In The Database Or Database is Empty");
-        } catch (Exception e) {
+        } catch (NullPointerException e) {
             e.printStackTrace();
         } finally {
             session.close();
@@ -68,6 +73,39 @@ public class ChoosingMatchOperations implements TournamentMatchesRepo {
 
         return matchCode;
 
+    }
+
+    @Override
+    public List<PlayersBean> getAllThePlayers(ArrayList<Integer> teams) {
+        
+        session = HibernateUtils.getSession();
+        
+        List<PlayersBean> allPlayersList = null;
+        
+        String query = "FROM PlayersBean WHERE team_id IN (:teamId)";
+        
+        System.err.println("Here inside the getAllThePlayers list t t t t t t" + teams);
+    
+        try {
+            
+            session.beginTransaction();
+            allPlayersList = session.createQuery(query).setParameterList("teamId", teams).getResultList();
+            
+             System.err.println("result list is is is ::==== " + allPlayersList.size());
+            
+        } catch (Exception e) {
+            
+            e.printStackTrace();
+            
+        } finally {
+            
+            if (session != null) {
+                session.close();
+            }
+            
+        }
+        
+        return allPlayersList;
     }
 
 }

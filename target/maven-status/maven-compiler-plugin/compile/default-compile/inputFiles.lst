@@ -1,6 +1,7 @@
 D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\beans\SecondInningsBatting.java
 D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\globalvariables\CountriesShort.java
 D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\beans\SuperOverBowling.java
+D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\GUI\PlayerSelectionForm.java
 D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\beans\CurrentMatchPlayers.java
 D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\GUI\TeamSelectionForm.java
 D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\beans\PlayersBean.java
@@ -10,7 +11,8 @@ D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scor
 D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\services\TeamOperationsAndServices.java
 D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\globalvariables\TeamMatchVariables.java
 D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\GUI\MainScoringForm.java
-D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\GUI\TestingHere.java
+D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\GUI\ChooseCaptainForm.java
+D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\reference\bean\BothTeamPlayers.java
 D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\beans\TeamBean.java
 D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\beans\FirstInningsBowling.java
 D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\beans\SuperOvers.java
@@ -19,6 +21,7 @@ D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scor
 D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\repositories\TournamentMatchesRepo.java
 D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\hibernate\utils\sessionService\HibernateUtils.java
 D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\beans\FirstInningsBatting.java
+D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\reference\bean\IndividualPlayerBean.java
 D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\beans\SecondInningsBowling.java
 D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\globalvariables\Countries.java
 D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\GUI\ScoringApp.java

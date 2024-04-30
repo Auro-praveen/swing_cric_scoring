@@ -20,6 +20,7 @@ public class GlobalVariables {
         add("Asia Cup");
         add("Womens Premier League (WPL)");
     }};
+   
     
     public static String selecteLeagueType;
     

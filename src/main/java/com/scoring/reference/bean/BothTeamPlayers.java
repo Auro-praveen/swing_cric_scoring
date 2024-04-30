@@ -15,13 +15,45 @@ import java.util.Map;
  */
 public class BothTeamPlayers {
 
-    private String home_team;
-    private String home_team_fullName;
-    private String away_team;
-    private String away_team_fullName;
+    private String teamName;
+    private String teamFullName;
     private ArrayList<IndividualPlayerBean> teamPlayers;
 //    private In
+    
+    public BothTeamPlayers() {
+        
+    }
 
+    public BothTeamPlayers(String teamName, String teamFullName, ArrayList<IndividualPlayerBean> teamPlayers) {
+        this.teamName = teamName;
+        this.teamFullName = teamFullName;
+        this.teamPlayers = teamPlayers;
+    }
 
+    public String getTeamName() {
+        return teamName;
+    }
+
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
+    }
+
+    public String getTeamFullName() {
+        return teamFullName;
+    }
+
+    public void setTeamFullName(String teamFullName) {
+        this.teamFullName = teamFullName;
+    }
+
+    public ArrayList<IndividualPlayerBean> getTeamPlayers() {
+        return teamPlayers;
+    }
+
+    public void setTeamPlayers(ArrayList<IndividualPlayerBean> teamPlayers) {
+        this.teamPlayers = teamPlayers;
+    }
+
+    
 
 }

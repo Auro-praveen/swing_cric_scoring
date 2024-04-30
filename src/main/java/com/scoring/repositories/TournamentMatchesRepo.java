@@ -5,7 +5,9 @@
  */
 package com.scoring.repositories;
 
+import com.scoring.beans.PlayersBean;
 import com.scoring.beans.TeamBean;
+import com.scoring.reference.bean.IndividualPlayerBean;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +25,6 @@ public interface TournamentMatchesRepo {
     // last updated match_code for the team that playing currently
     public String getLastUpdateMatchCode(String match_between);
     
-   
+    public List<PlayersBean> getAllThePlayers(ArrayList<Integer> teams);
     
 }
