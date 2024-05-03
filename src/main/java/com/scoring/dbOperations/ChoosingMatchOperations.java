@@ -84,14 +84,14 @@ public class ChoosingMatchOperations implements TournamentMatchesRepo {
         
         String query = "FROM PlayersBean WHERE team_id IN (:teamId)";
         
-        System.err.println("Here inside the getAllThePlayers list t t t t t t" + teams);
+//        System.err.println("Here inside the getAllThePlayers list t t t t t t" + teams);
     
         try {
             
             session.beginTransaction();
             allPlayersList = session.createQuery(query).setParameterList("teamId", teams).getResultList();
             
-             System.err.println("result list is is is ::==== " + allPlayersList.size());
+//             System.err.println("result list is is is ::==== " + allPlayersList.size());
             
         } catch (Exception e) {
             

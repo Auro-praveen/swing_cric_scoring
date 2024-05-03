@@ -6,6 +6,7 @@
 package com.scoring.GUI;
 
 import com.scoring.globalvariables.TeamMatchVariables;
+import com.scoring.threadOperations.BeforeMatchThreadOperatins;
 import java.awt.Color;
 import javax.swing.JFrame;
 
@@ -18,6 +19,8 @@ public class MainScoringForm extends javax.swing.JFrame {
     /**
      * Creates new form MainScoringForm
      */
+    private BeforeMatchThreadOperatins beforeMatchThreadOperatins;
+
     public MainScoringForm() {
 
         initComponents();
@@ -27,6 +30,8 @@ public class MainScoringForm extends javax.swing.JFrame {
 
         loadOperations();
 
+        beforeMatchThreadOperatins = new BeforeMatchThreadOperatins();
+        beforeMatchThreadOperatins.callBeforeMatchThread();
     }
 
     private void loadOperations() {
@@ -296,23 +301,23 @@ public class MainScoringForm extends javax.swing.JFrame {
             System.out.println("com.scoring.GUI.MainScoringForm.teams_listValueChanged()=================== callled");
 
             if (teams_list.getSelectedValue() == "Choose Teams") {
-                
+
                 teams_scrollpane.setVisible(false);
                 TeamMatchVariables.tournamentType = teams_list.getSelectedValue();
                 new TeamSelectionForm().setVisible(true);
-                
+
             } else if (teams_list.getSelectedValue() == "Add Players") {
 
                 teams_scrollpane.setVisible(false);
                 TeamMatchVariables.tournamentType = teams_list.getSelectedValue();
                 new PlayerSelectionForm().setVisible(true);
-                
+
             } else {
 
                 teams_scrollpane.setVisible(false);
                 TeamMatchVariables.tournamentType = teams_list.getSelectedValue();
                 new ChooseCaptainForm().setVisible(true);
-                
+
             }
 
         }

@@ -10,8 +10,10 @@ import com.scoring.dbOperations.ChoosingMatchOperations;
 import com.scoring.globalvariables.GlobalVariables;
 import com.scoring.globalvariables.TeamMatchVariables;
 import com.scoring.services.TeamOperationsAndServices;
+import com.scoring.threadOperations.GetAllPlayersThreadOperations;
 import java.awt.Color;
 import java.awt.PopupMenu;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,26 +42,30 @@ public class TeamSelectionForm extends javax.swing.JFrame {
 
 //        home_team_scrollpane.setVisible(false);
 //        away_team_scrollpane.setVisible(false);
-
         this.setSize(700, 500);
         this.getContentPane().setBackground(new Color(63, 115, 113));
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        TeamOperationsAndServices teamOperationsAndServices = new TeamOperationsAndServices();
-        teamsList = teamOperationsAndServices.getAllTeamNames();
+//        TeamOperationsAndServices teamOperationsAndServices = new TeamOperationsAndServices();
+//        teamsList = teamOperationsAndServices.getAllTeamNames();
+        teamsList = TeamMatchVariables.teamFullNameList;
 
-        
-        
-        if(TeamMatchVariables.awayTeam != null & TeamMatchVariables.homeTeam != null) {
+        System.out.println("printing data here here ::---------- " + teamsList);
+
+        if (TeamMatchVariables.awayTeam != null & TeamMatchVariables.homeTeam != null) {
             selected_hometeam_field.setText(TeamMatchVariables.homeTeam);
             selected_awayteam_field.setText(TeamMatchVariables.awayTeam);
-            
+
             selected_awayteam = TeamMatchVariables.awayTeam;
             selected_hometeam = TeamMatchVariables.homeTeam;
         }
-        
-        
-         addTeamsToTeamselectionList(teamsList);
+
+        if (teamsList != null) {
+            addTeamsToTeamselectionList(teamsList);
+
+        } else {
+            this.dispose();
+        }
 
     }
 
@@ -80,14 +86,36 @@ public class TeamSelectionForm extends javax.swing.JFrame {
 //        away_team_scrollpane.add(away_team_list);
 //            home_team_scrollpane.setVisible(true);
 //            away_team_scrollpane.setVisible(true);
-
         } else {
             JOptionPane.showMessageDialog(this, "ERROR : No Teams Found, Please Add The Team And Start A Match",
-                                    "No Teams", JOptionPane.ERROR_MESSAGE);
+                    "No Teams", JOptionPane.ERROR_MESSAGE);
         }
 
     }
 
+    
+        private void getPlayersOfBothTeam() {
+
+        ArrayList<Integer> teamIdList = new ArrayList<Integer>() {
+            {
+                add(TeamMatchVariables.homeTeamId);
+                add(TeamMatchVariables.awayTeamId);
+            }
+        };
+
+        ArrayList<String> teamNameList = new ArrayList<String>() {
+            {
+                add(String.valueOf(TeamMatchVariables.selectedTeamsMap.get(TeamMatchVariables.homeTeam).get("teamShortName")));
+                add(String.valueOf(TeamMatchVariables.selectedTeamsMap.get(TeamMatchVariables.awayTeam).get("teamShortName")));
+            }
+        };
+
+//        allPlayersMap = teamOperationsAndServices.bothTeamPlayers(teamIdList, teamNameList);
+//        TeamMatchVariables.bothTeamPlayersGlobalMap = allPlayersMap;
+        
+         new GetAllPlayersThreadOperations(teamIdList, teamNameList);
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -181,71 +209,71 @@ public class TeamSelectionForm extends javax.swing.JFrame {
 
     private void team_confirmBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_team_confirmBtnActionPerformed
         // TODO add your handling code here:
-        
+
         if (selected_hometeam != null && selected_awayteam != null) {
-            
+
             String hTeamName = String.valueOf(TeamMatchVariables.selectedTeamsMap.get(selected_hometeam).get("teamShortName"));
             String aTeamName = String.valueOf(TeamMatchVariables.selectedTeamsMap.get(selected_awayteam).get("teamShortName"));
-            
+
             String matchBetween = hTeamName + aTeamName;
-            
-            System.out.println("Matches between between ======= "+matchBetween);
-            
+
+            System.out.println("Matches between between ======= " + matchBetween);
+
             String currentMatchCode = matchBetween;
             String oldMatchCode = null;
             int m_code;
-            
+
             try {
-               oldMatchCode =  new ChoosingMatchOperations().getLastUpdateMatchCode(matchBetween);
-            } catch ( Exception e) {
+                oldMatchCode = new ChoosingMatchOperations().getLastUpdateMatchCode(matchBetween);
+            } catch (Exception e) {
                 e.printStackTrace();
             }
-            
+
             if (oldMatchCode != null) {
                 m_code = Integer.valueOf(oldMatchCode.substring(matchBetween.length() - 1));
                 m_code += 10;
             } else {
                 m_code = 1010;
             }
-            
+
             currentMatchCode += m_code;
-            
-            System.out.println("Current match code is is is ===========" +currentMatchCode);
-            
+
+            System.out.println("Current match code is is is ===========" + currentMatchCode);
+
             TeamMatchVariables.matchCode = currentMatchCode;
             MatchDetails matchDetails = new MatchDetails();
-            
+
             matchDetails.setMatch_code(currentMatchCode);
             matchDetails.setHome_team_name(hTeamName);
             matchDetails.setHome_team_full_name(selected_hometeam);
-            
+
             matchDetails.setAway_team_name(aTeamName);
             matchDetails.setAway_team_full_name(selected_awayteam);
-            
+
             TeamMatchVariables.homeTeamId = Integer.valueOf(String.valueOf(TeamMatchVariables.selectedTeamsMap.get(selected_hometeam).get("teamId")));
             TeamMatchVariables.awayTeamId = Integer.valueOf(String.valueOf(TeamMatchVariables.selectedTeamsMap.get(selected_awayteam).get("teamId")));
-            
+
             TeamMatchVariables.homeTeamShortName = hTeamName;
             TeamMatchVariables.awayTeamShortName = aTeamName;
-            
+
             TeamMatchVariables.selectedTeamsObjectMap.put(currentMatchCode, matchDetails);
+            getPlayersOfBothTeam();
             this.setVisible(false);
-            
+
         } else {
             JOptionPane.showMessageDialog(this, "Note : Please Select both The Teams Before Confirming", "No Teams Selected", JOptionPane.ERROR_MESSAGE);
         }
-        
+
     }//GEN-LAST:event_team_confirmBtnActionPerformed
 
     private void away_team_listValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_away_team_listValueChanged
 
         // TODO add your handling code here:
-        
         selected_awayteam = away_team_list.getSelectedValue();
         selected_awayteam_field.setText(selected_awayteam);
         TeamMatchVariables.awayTeam = selected_awayteam;
 
-        
+
     }//GEN-LAST:event_away_team_listValueChanged
 
     /**

@@ -8,6 +8,7 @@ D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scor
 D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\beans\SuperOverBatting.java
 D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\beans\MatchDetails.java
 D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\lckingtesting\AppMain.java
+D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\threadOperations\GetAllPlayersThreadOperations.java
 D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\services\TeamOperationsAndServices.java
 D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\globalvariables\TeamMatchVariables.java
 D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\GUI\MainScoringForm.java
@@ -23,6 +24,7 @@ D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\hibe
 D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\beans\FirstInningsBatting.java
 D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\reference\bean\IndividualPlayerBean.java
 D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\beans\SecondInningsBowling.java
+D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\threadOperations\BeforeMatchThreadOperatins.java
 D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\globalvariables\Countries.java
 D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\GUI\ScoringApp.java
 D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\services\SavePlayersService.java
