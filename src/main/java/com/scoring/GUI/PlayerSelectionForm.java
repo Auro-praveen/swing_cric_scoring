@@ -34,10 +34,10 @@ public class PlayerSelectionForm extends javax.swing.JFrame {
 //    private BothTeamPlayers bothTeamPlayersBean = new BothTeamPlayers();
     private ArrayList<PlayersBean> playersBeanList;
     private String selectedPlayer = null;
+    private String selectedPlayerToRemove = null;
     private Map<String, ArrayList<CurrentMatchPlayers>> selectedPlayersMapList = new HashMap<>();
 
     private PlayersBean playerBeanObject = null;
-    
 
 //    private ArrayList<CurrentMatchPlayers> currentSelectedPlayersList;
     private Map<String, ArrayList<String>> selectedPlayersIntoMap = new HashMap<>();
@@ -45,16 +45,17 @@ public class PlayerSelectionForm extends javax.swing.JFrame {
     public PlayerSelectionForm() {
         initComponents();
 
-        this.setSize(700, 500);
+        this.setSize(850, 700);
         this.getContentPane().setBackground(new Color(63, 115, 113));
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        getPlayersOfBothTeam();
+        if (!TeamMatchVariables.bothTeamPlayersGlobalMap.isEmpty()) {
+            allPlayersMap = TeamMatchVariables.bothTeamPlayersGlobalMap;
+        }
 
+//        getPlayersOfBothTeam();
         addTeamsToSelectionList();
 
-        selectedPlayersMapList.put(TeamMatchVariables.homeTeam, new ArrayList<CurrentMatchPlayers>());
-        selectedPlayersMapList.put(TeamMatchVariables.awayTeam, new ArrayList<CurrentMatchPlayers>());
     }
 
     // get all theplayers from the both the playing team
@@ -73,12 +74,10 @@ public class PlayerSelectionForm extends javax.swing.JFrame {
                 add(String.valueOf(TeamMatchVariables.selectedTeamsMap.get(TeamMatchVariables.awayTeam).get("teamShortName")));
             }
         };
-        
-        System.out.println();
-        System.out.println("Before calling the bothTeamPlayers function from the playerselectionfrom ==============");
-        
+
         allPlayersMap = teamOperationsAndServices.bothTeamPlayers(teamIdList, teamNameList);
         TeamMatchVariables.bothTeamPlayersGlobalMap = allPlayersMap;
+
     }
 
     // to add the Teams to team selection list to add players for them
@@ -98,20 +97,18 @@ public class PlayerSelectionForm extends javax.swing.JFrame {
 
 //        currentSelectedPlayersList = selectedPlayersMapList.get(selectedTeamToAddPlayers);
         addPlayersToList(TeamMatchVariables.homeTeam);
+
     }
 
     // to add all the players to list of selected team type
     private void addPlayersToList(String teamName) {
-        
-        System.out.println("team name is is  ::== "+teamName);
-        
-        System.out.println("Players bean list is is is ::======= " + allPlayersMap);
 
+//        System.out.println("team name is is  ::== " + teamName);
+//        System.out.println("Players bean list is is is ::======= " + allPlayersMap);
         playersBeanList = allPlayersMap.get(TeamMatchVariables.selectedTeamsMap.get(teamName).get("teamShortName"));
         DefaultListModel<String> defaultListModel = new DefaultListModel<>();
-        
-        System.out.println("Players bean list is is is ::======= " + playersBeanList.size());
 
+//        System.out.println("Players bean list is is is ::======= " + playersBeanList.size());
         playersBeanList.forEach((PlayersBean players) -> {
             defaultListModel.addElement(players.getJersey_no() + "   " + players.getPlayer_full_name());
         });
@@ -119,7 +116,19 @@ public class PlayerSelectionForm extends javax.swing.JFrame {
 //        bothTeamPlayersBean.getTeamPlayers().forEach((IndividualPlayerBean individualPlayersBean) -> {
 //            defaultListModel.addElement(individualPlayersBean.getJerseyNo() + "   " + individualPlayersBean.getFullName());
 //        });
-        selected_players_list.setModel(defaultListModel);
+        player_selectionList.setModel(defaultListModel);
+
+        if (!TeamMatchVariables.selectedPlayersMap.isEmpty()) {
+
+            selectedPlayersIntoMap = TeamMatchVariables.selectedPlayersIntoMap;
+            selectedPlayersMapList = TeamMatchVariables.selectedPlayersMap;
+
+            addPlayersToSelectedList();
+
+        } else {
+            selectedPlayersMapList.put(TeamMatchVariables.homeTeam, new ArrayList<CurrentMatchPlayers>());
+            selectedPlayersMapList.put(TeamMatchVariables.awayTeam, new ArrayList<CurrentMatchPlayers>());
+        }
     }
 
     private boolean playersOperations(String operType, String player) {
@@ -127,6 +136,7 @@ public class PlayerSelectionForm extends javax.swing.JFrame {
         boolean operationComplete = true;
 
         try {
+
             CurrentMatchPlayers currentPlayers = new CurrentMatchPlayers(playerBeanObject.getJersey_no(),
                     playerBeanObject.getPlayer_name(), playerBeanObject.getPlayer_full_name(), playerBeanObject.getBatting_hand(),
                     playerBeanObject.getTeamBean().getTeam_name(), playerBeanObject.getBowling_type(), TeamMatchVariables.matchCode, playerBeanObject.getTeamBean().getTeam_full_name());
@@ -138,7 +148,7 @@ public class PlayerSelectionForm extends javax.swing.JFrame {
 
             } else if (operType == "REMOVE") {
 
-                currentMatchPlayersList.remove(currentMatchPlayersList);
+                currentMatchPlayersList.remove(currentPlayers);
 
             } else {
                 currentMatchPlayersList.clear();
@@ -153,14 +163,18 @@ public class PlayerSelectionForm extends javax.swing.JFrame {
     }
 
     private void addPlayersToSelectedList() {
-        
+
         DefaultListModel<String> defaultPlayerList = new DefaultListModel<>();
-        
-        selectedPlayersIntoMap.get(selectedTeamToAddPlayers).forEach( (teamPlayers) -> {
-            defaultPlayerList.addElement(teamPlayers);
-        } );
-        
-        selected_players_list.setModel(defaultPlayerList);
+
+        if (selectedPlayersIntoMap.get(selectedTeamToAddPlayers) != null && !selectedPlayersIntoMap.get(selectedTeamToAddPlayers).isEmpty()) {
+            selectedPlayersIntoMap.get(selectedTeamToAddPlayers).forEach((teamPlayers) -> {
+                defaultPlayerList.addElement(teamPlayers);
+            });
+
+            selected_players_list.setModel(defaultPlayerList);
+        } else {
+            selected_players_list.setModel(defaultPlayerList);
+        }
 
     }
 
@@ -192,7 +206,7 @@ public class PlayerSelectionForm extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         player_selection_panel.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
-        player_selection_panel.setForeground(new java.awt.Color(135, 30, 1));
+        player_selection_panel.setForeground(new java.awt.Color(255, 90, 61));
         player_selection_panel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         player_selection_panel.setText("Choose Players Here");
         getContentPane().add(player_selection_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 230, 32));
@@ -248,6 +262,11 @@ public class PlayerSelectionForm extends javax.swing.JFrame {
         getContentPane().add(add_playersBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 213, 120, 40));
 
         remove_playersBtn.setText("Remove Player");
+        remove_playersBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                remove_playersBtnActionPerformed(evt);
+            }
+        });
         getContentPane().add(remove_playersBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 293, 120, 40));
 
         remove_allBtn.setText("Clear Selected List");
@@ -259,6 +278,11 @@ public class PlayerSelectionForm extends javax.swing.JFrame {
         getContentPane().add(remove_allBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 383, -1, 40));
 
         confirmBtn.setText("CONFIRM");
+        confirmBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmBtnActionPerformed(evt);
+            }
+        });
         getContentPane().add(confirmBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 520, 200, 30));
 
         pack();
@@ -270,6 +294,7 @@ public class PlayerSelectionForm extends javax.swing.JFrame {
         selectedTeamToAddPlayers = team_selection_list.getSelectedValue();
 
         addPlayersToList(selectedTeamToAddPlayers);
+        addPlayersToSelectedList();
 
 //        currentSelectedPlayersList = selectedPlayersMapList.get(selectedTeamToAddPlayers);
 
@@ -277,6 +302,14 @@ public class PlayerSelectionForm extends javax.swing.JFrame {
 
     private void remove_allBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_remove_allBtnActionPerformed
         // TODO add your handling code here:
+
+        ArrayList<String> selectedPlArrayList = selectedPlayersIntoMap.get(selectedTeamToAddPlayers);
+        boolean isOperatinoCompleted = playersOperations("REMOVE", "NONE");
+
+        if (isOperatinoCompleted) {
+            selectedPlArrayList.clear();
+            addPlayersToSelectedList();
+        }
     }//GEN-LAST:event_remove_allBtnActionPerformed
 
     private void player_selectionListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_player_selectionListValueChanged
@@ -288,19 +321,51 @@ public class PlayerSelectionForm extends javax.swing.JFrame {
 
     private void add_playersBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_playersBtnActionPerformed
         // TODO add your handling code here:
-        
+
         ArrayList<String> selectedPlArrayList = selectedPlayersIntoMap.get(selectedTeamToAddPlayers);
 
         if (selectedPlayer != null) {
 
-            if (!selectedPlArrayList.contains(selectedPlayer)) {
+            if (selectedPlArrayList != null && !selectedPlArrayList.isEmpty()) {
+                if (!selectedPlArrayList.contains(selectedPlayer)) {
+
+                    if (!(selectedPlArrayList.size() > 15)) {
+                        selectedPlArrayList.add(selectedPlayer);
+
+                        for (PlayersBean playersBean : playersBeanList) {
+                            if (playersBean.getJersey_no() == Integer.valueOf(selectedPlayer.substring(0, selectedPlayer.indexOf(' ')))) {
+                                playerBeanObject = playersBean;
+
+                                break;
+                            }
+                        }
+
+                        boolean isOperatinoCompleted = playersOperations("ADD", selectedPlayer);
+
+                        if (isOperatinoCompleted) {
+                            addPlayersToSelectedList();
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Player Already Exists Try Adding Different Players", "Player Alredy Exists", JOptionPane.DEFAULT_OPTION);
+                    }
+
+                } else {
+                    JOptionPane.showMessageDialog(this, "Player Already Exists Try Adding Different Players", "Player Alredy Exists", JOptionPane.ERROR_MESSAGE);
+                }
+
+            } else {
+
+                selectedPlArrayList = new ArrayList<String>();
 
                 selectedPlArrayList.add(selectedPlayer);
+
+                selectedPlayersIntoMap.put(selectedTeamToAddPlayers, selectedPlArrayList);
+
+                System.out.println(selectedPlayersIntoMap);
 
                 for (PlayersBean playersBean : playersBeanList) {
                     if (playersBean.getJersey_no() == Integer.valueOf(selectedPlayer.substring(0, selectedPlayer.indexOf(' ')))) {
                         playerBeanObject = playersBean;
-
                         break;
                     }
                 }
@@ -310,21 +375,61 @@ public class PlayerSelectionForm extends javax.swing.JFrame {
                 if (isOperatinoCompleted) {
                     addPlayersToSelectedList();
                 }
-
-            } else {
-                JOptionPane.showMessageDialog(this, "Player Already Exists Try Adding Different Players", "Player Alredy Exists", JOptionPane.ERROR_MESSAGE);
             }
+
         } else {
             JOptionPane.showMessageDialog(this, "Please Select The Player That You Want To Add To The Team", "No Player Selected", JOptionPane.ERROR_MESSAGE);
         }
+
 
     }//GEN-LAST:event_add_playersBtnActionPerformed
 
     private void selected_players_listValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_selected_players_listValueChanged
         // TODO add your handling code here:
-        
-        
+
+        selectedPlayerToRemove = selected_players_list.getSelectedValue();
+
     }//GEN-LAST:event_selected_players_listValueChanged
+
+    private void remove_playersBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_remove_playersBtnActionPerformed
+        // TODO add your handling code here:
+
+        ArrayList<String> selectedPlArrayList = selectedPlayersIntoMap.get(selectedTeamToAddPlayers);
+        if (selectedPlayerToRemove != null) {
+            if (selectedPlArrayList.contains(selectedPlayerToRemove)) {
+
+                selectedPlArrayList.remove(selectedPlayerToRemove);
+
+                for (PlayersBean playersBean : playersBeanList) {
+                    if (playersBean.getJersey_no() == Integer.valueOf(selectedPlayerToRemove.substring(0, selectedPlayerToRemove.indexOf(' ')))) {
+                        playerBeanObject = playersBean;
+
+                        break;
+                    }
+                }
+
+                boolean isOperatinoCompleted = playersOperations("REMOVE", selectedPlayerToRemove);
+
+                if (isOperatinoCompleted) {
+                    addPlayersToSelectedList();
+                }
+
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Please Select The Player That You Want To Remove From The Team", "No Player Selected", JOptionPane.ERROR_MESSAGE);
+
+        }
+    }//GEN-LAST:event_remove_playersBtnActionPerformed
+
+    private void confirmBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmBtnActionPerformed
+        // TODO add your handling code here:
+
+        TeamMatchVariables.selectedPlayersIntoMap = selectedPlayersIntoMap;
+        TeamMatchVariables.selectedPlayersMap = selectedPlayersMapList;
+
+        JOptionPane.showMessageDialog(this, "Both The Team Players Selected Will Be Saved", "Players Stored", JOptionPane.OK_OPTION);
+
+    }//GEN-LAST:event_confirmBtnActionPerformed
 
     /**
      * @param args the command line arguments
