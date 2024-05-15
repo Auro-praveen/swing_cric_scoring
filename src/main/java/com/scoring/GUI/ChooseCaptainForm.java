@@ -5,8 +5,11 @@
  */
 package com.scoring.GUI;
 
+import com.scoring.beans.CurrentMatchPlayers;
 import com.scoring.globalvariables.TeamMatchVariables;
+import com.scoring.services.CurrentPlayersService;
 import java.awt.Color;
+import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 
@@ -46,7 +49,13 @@ public class ChooseCaptainForm extends javax.swing.JFrame {
         DefaultListModel<String> homeTeamDefaultListModel = new DefaultListModel<>();
 
         TeamMatchVariables.selectedPlayersIntoMap.get(TeamMatchVariables.homeTeam).forEach((player) -> {
-            if (homeTeamCaptain != null && player.equals(homeTeamCaptain)) {
+
+            if (homeTeamCaptain != null
+                    && homeTeamWicketKeeper != null
+                    && player.equals(homeTeamWicketKeeper)
+                    && player.equals(homeTeamCaptain)) {
+                homeTeamDefaultListModel.addElement(player + " (C)" + "  (WK)");
+            } else if (homeTeamCaptain != null && player.equals(homeTeamCaptain)) {
                 homeTeamDefaultListModel.addElement(player + "   (C)");
             } else if (homeTeamCaptain != null && player.equals(homeTeamCaptain)) {
                 homeTeamDefaultListModel.addElement(player + "   (WK)");
@@ -64,7 +73,12 @@ public class ChooseCaptainForm extends javax.swing.JFrame {
 
         TeamMatchVariables.selectedPlayersIntoMap.get(TeamMatchVariables.awayTeam).forEach((player) -> {
 
-            if (awayTeamCaptain != null && player.equals(awayTeamCaptain)) {
+            if (awayTeamCaptain != null
+                    && awayTeamWicketKeeper != null
+                    && player.equals(awayTeamWicketKeeper)
+                    && player.equals(awayTeamCaptain)) {
+                awayTeamDefaultListModel.addElement(player + " (C)" + "  (WK)");
+            } else if (awayTeamCaptain != null && player.equals(awayTeamCaptain)) {
                 awayTeamDefaultListModel.addElement(player + "   (C)");
             } else if (awayTeamWicketKeeper != null && player.equals(awayTeamWicketKeeper)) {
                 awayTeamDefaultListModel.addElement(player + "   (WK)");
@@ -108,7 +122,7 @@ public class ChooseCaptainForm extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(away_choosse_captainList);
 
-        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 90, 250, 350));
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(482, 90, -1, 350));
 
         home_choose_CaptainList.setBackground(new java.awt.Color(116, 153, 152));
         home_choose_CaptainList.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
@@ -119,7 +133,7 @@ public class ChooseCaptainForm extends javax.swing.JFrame {
         });
         jScrollPane4.setViewportView(home_choose_CaptainList);
 
-        getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 250, 350));
+        getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 260, 350));
 
         choose_captainHeader.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         choose_captainHeader.setForeground(new java.awt.Color(255, 232, 140));
@@ -128,7 +142,7 @@ public class ChooseCaptainForm extends javax.swing.JFrame {
         getContentPane().add(choose_captainHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 230, 32));
 
         choose_optionType.setText("Select Captain From Both The Teams");
-        getContentPane().add(choose_optionType, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, 180, -1));
+        getContentPane().add(choose_optionType, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 210, -1));
 
         choose_captainBtn.setText("Choose Captain");
         choose_captainBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -159,25 +173,43 @@ public class ChooseCaptainForm extends javax.swing.JFrame {
 
     private void away_choosse_captainListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_away_choosse_captainListValueChanged
         // TODO add your handling code here:
-        if (isSelectCaptainActive) {
-            awayTeamCaptain = away_choosse_captainList.getSelectedValue();
-        } else {
-            awayTeamWicketKeeper = away_choosse_captainList.getSelectedValue();
+
+        if (evt.getValueIsAdjusting()) {
+
+            if (away_choosse_captainList.getSelectedValue() != null) {
+                if (isSelectCaptainActive) {
+                    awayTeamCaptain = away_choosse_captainList.getSelectedValue();
+                } else {
+                    awayTeamWicketKeeper = away_choosse_captainList.getSelectedValue();
+                }
+
+                System.out.println("Selected Value :: === " + away_choosse_captainList.getSelectedValue());
+
+                addAwayTeamCaptain();
+            }
         }
 
-        addAwayTeamCaptain();
     }//GEN-LAST:event_away_choosse_captainListValueChanged
 
     private void home_choose_CaptainListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_home_choose_CaptainListValueChanged
         // TODO add your handling code here:
 
-        if (isSelectCaptainActive) {
-            homeTeamCaptain = home_choose_CaptainList.getSelectedValue();
-        } else {
-            homeTeamWicketKeeper = home_choose_CaptainList.getSelectedValue();
+        if (evt.getValueIsAdjusting()) {
+            if (home_choose_CaptainList.getSelectedValue() != null) {
+                if (isSelectCaptainActive) {
+                    homeTeamCaptain = home_choose_CaptainList.getSelectedValue();
+                } else {
+                    homeTeamWicketKeeper = home_choose_CaptainList.getSelectedValue();
+                }
+
+                System.out.println("is selection active for captain := " + (isSelectCaptainActive) + " "
+                        + "\n Selected Value :: === " + home_choose_CaptainList.getSelectedValue());
+
+                addHometeamCaptain();
+            }
+
         }
 
-        addHometeamCaptain();
 
     }//GEN-LAST:event_home_choose_CaptainListValueChanged
 
@@ -204,8 +236,23 @@ public class ChooseCaptainForm extends javax.swing.JFrame {
         TeamMatchVariables.awayTeamCaptain = awayTeamCaptain;
         TeamMatchVariables.homeTeamWicketKeeper = homeTeamWicketKeeper;
         TeamMatchVariables.awayTeamWicketKeeper = awayTeamWicketKeeper;
-        
-        
+
+        ArrayList<CurrentMatchPlayers> currentPlayersBeanList = TeamMatchVariables.selectedPlayersMap
+                .get(TeamMatchVariables.homeTeam);
+
+        CurrentPlayersService currentPlayersService = new CurrentPlayersService();
+
+        currentPlayersBeanList = currentPlayersService.addCaptainsMethod(currentPlayersBeanList, homeTeamCaptain, homeTeamWicketKeeper);
+
+        TeamMatchVariables.selectedPlayersMap.put(TeamMatchVariables.homeTeam, currentPlayersBeanList);
+
+        ArrayList<CurrentMatchPlayers> awayPlayersBeanList = TeamMatchVariables.selectedPlayersMap
+                .get(TeamMatchVariables.awayTeam);
+
+        awayPlayersBeanList = currentPlayersService.addCaptainsMethod(awayPlayersBeanList, awayTeamCaptain, awayTeamWicketKeeper);
+
+        TeamMatchVariables.selectedPlayersMap.put(TeamMatchVariables.awayTeam, awayPlayersBeanList);
+
     }//GEN-LAST:event_submt_captainBtnActionPerformed
 
     /**

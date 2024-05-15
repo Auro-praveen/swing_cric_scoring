@@ -22,7 +22,10 @@ public class TeamMatchVariables {
 
     public static String tournamentType, homeTeam, awayTeam, matchCode, homeTeamShortName, awayTeamShortName;
 
-    public static String homeTeamCaptain = null, homeTeamWicketKeeper = null, awayTeamCaptain = null, awayTeamWicketKeeper = null;
+    public static String homeTeamCaptain = null,
+            homeTeamWicketKeeper = null,
+            awayTeamCaptain = null,
+            awayTeamWicketKeeper = null;
 
     public static ArrayList<String> teamShortNameList, teamFullNameList;
 
@@ -34,6 +37,7 @@ public class TeamMatchVariables {
     public static Map<String, ArrayList<PlayersBean>> bothTeamPlayersGlobalMap = new HashMap<>();
 
     // selected Current matach players bean for the match
+    // key vairable will be home team fullname and awayTeam Full name
     public static Map<String, ArrayList<CurrentMatchPlayers>> selectedPlayersMap = new HashMap<>();
 
     // selected Players from both the team and key will be the team full name

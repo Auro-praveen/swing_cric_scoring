@@ -40,12 +40,14 @@ public class CurrentMatchPlayers implements Serializable {
     private String match_code;
     @Column(length = 50)
     private String team_fullName;
+    private boolean isCaptain;
+    private boolean isWicketKeeper;
     
     public CurrentMatchPlayers() {
         
     }
 
-    public CurrentMatchPlayers(int player_jersey, String player_name, String player_full_name, String batting_hand, String team, String bowling_type, String match_code, String team_fullName) {
+    public CurrentMatchPlayers(int player_jersey, String player_name, String player_full_name, String batting_hand, String team, String bowling_type, String match_code, String team_fullName, boolean isCaptain, boolean isWicketKeeper) {
 //        this.player_id = player_id;
         this.player_jersey = player_jersey;
         this.player_name = player_name;
@@ -55,7 +57,11 @@ public class CurrentMatchPlayers implements Serializable {
         this.bowling_type = bowling_type;
         this.match_code = match_code;
         this.team_fullName = team_fullName;
+        this.isCaptain = isCaptain;
+        this.isWicketKeeper = isWicketKeeper;
     }
+
+
 
     public int getPlayer_id() {
         return player_id;
@@ -129,6 +135,23 @@ public class CurrentMatchPlayers implements Serializable {
         this.team_fullName = team_fullName;
     }
 
+    public boolean isIsCaptain() {
+        return isCaptain;
+    }
+
+    public void setIsCaptain(boolean isCaptain) {
+        this.isCaptain = isCaptain;
+    }
+
+    public boolean isIsWicketKeeper() {
+        return isWicketKeeper;
+    }
+
+    public void setIsWicketKeeper(boolean isWicketKeeper) {
+        this.isWicketKeeper = isWicketKeeper;
+    }
+
+    
     
 
 }

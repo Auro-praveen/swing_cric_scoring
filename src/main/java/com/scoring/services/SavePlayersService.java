@@ -30,13 +30,13 @@ public class SavePlayersService {
         System.out.println("com.scoring.services.SavePlayersService.saveTeam()");
         teamBean = new TeamBean();
         
-        teamBean.setTeam_id(109);
-        teamBean.setTeam_name("PBKS");
-        teamBean.setHome_stadium("Maharaja Yadavindra Singh International Cricket Stadium");
-        teamBean.setHometown("Mohali");
-        teamBean.setTeam_captain("Sam Curren");
-        teamBean.setTeam_full_name("Punjab Kings");
-        teamBean.setTeam_owner("Punjab Kings Pvt.lmtd");
+        teamBean.setTeam_id(103);
+        teamBean.setTeam_name("RR");
+        teamBean.setHome_stadium("M. RR Chennai");
+        teamBean.setHometown("Jaipur");
+        teamBean.setTeam_captain("Sanju Samson");
+        teamBean.setTeam_full_name("Rajastan Royals");
+        teamBean.setTeam_owner("RR Pvt.lmtd");
         teamBean.setTotal_players(30);
 
         try {
@@ -80,7 +80,7 @@ public class SavePlayersService {
                                 "Matheesha Theekshana", "Rachin Ravindra", "Shardul Thakur", "Daryl Mitchell", "Sameer Rizvi",
                                 "Mustafizur Rahman", "Avanish Rao Aravelly"};
         
-        int num =  7;
+        int num =  18;
         
         try {
             
@@ -93,8 +93,8 @@ public class SavePlayersService {
                 playersBean = new PlayersBean();
                 
                 playersBean.setAge(35);
-                playersBean.setCity("Chennai");
-                playersBean.setState("Tamilnadu");
+                playersBean.setCity("Bengaluru");
+                playersBean.setState("Karnataka");
                 playersBean.setBatting_hand("Right Hand");
                 playersBean.setCountry(Countries.INDIA.toString());
                 playersBean.setCountry_short(CountriesShort.IN.toString());

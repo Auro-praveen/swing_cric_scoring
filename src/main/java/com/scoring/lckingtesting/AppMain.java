@@ -5,6 +5,7 @@
  */
 package com.scoring.lckingtesting;
 
+import com.scoring.services.SavePlayersService;
 import com.scoring.services.TeamOperationsAndServices;
 
 
@@ -20,8 +21,8 @@ public class AppMain {
         System.out.println("com.scoring.lckingtesting.AppMain.main() hereh erherherherhereher");
         
 //        new SavePlayersService().saveTeam();
-//        new SavePlayersService().savePlayers();
-        new TeamOperationsAndServices().getAllTeamNames();
+        new SavePlayersService().savePlayers();
+//        new TeamOperationsAndServices().getAllTeamNames();
 
     }
     

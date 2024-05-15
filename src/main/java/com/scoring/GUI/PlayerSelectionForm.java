@@ -139,7 +139,7 @@ public class PlayerSelectionForm extends javax.swing.JFrame {
 
             CurrentMatchPlayers currentPlayers = new CurrentMatchPlayers(playerBeanObject.getJersey_no(),
                     playerBeanObject.getPlayer_name(), playerBeanObject.getPlayer_full_name(), playerBeanObject.getBatting_hand(),
-                    playerBeanObject.getTeamBean().getTeam_name(), playerBeanObject.getBowling_type(), TeamMatchVariables.matchCode, playerBeanObject.getTeamBean().getTeam_full_name());
+                    playerBeanObject.getTeamBean().getTeam_name(), playerBeanObject.getBowling_type(), TeamMatchVariables.matchCode, playerBeanObject.getTeamBean().getTeam_full_name(), false, false);
 
             ArrayList<CurrentMatchPlayers> currentMatchPlayersList = selectedPlayersMapList.get(selectedTeamToAddPlayers);
 
