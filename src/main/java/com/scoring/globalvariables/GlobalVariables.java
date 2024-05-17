@@ -6,6 +6,7 @@
 package com.scoring.globalvariables;
 
 import java.util.ArrayList;
+import javax.swing.JFrame;
 
 /**
  *
@@ -23,5 +24,8 @@ public class GlobalVariables {
    
     
     public static String selecteLeagueType;
+    
+    public static JFrame mainScoringForm = new JFrame();
+    public static String tossOwnTeam, firstInningsBattingTeam, firstInningsBowlingTeam;
     
 }

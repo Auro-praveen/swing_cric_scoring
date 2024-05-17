@@ -29,7 +29,10 @@ public class TeamMatchVariables {
 
     public static ArrayList<String> teamShortNameList, teamFullNameList;
 
-    public static Map<String, MatchDetails> selectedTeamsObjectMap = new HashMap<>();
+    // key is match code, just keep it 
+//    public static Map<String, MatchDetails> selectedTeamsObjectMap = new HashMap<>();
+    
+    public static MatchDetails currentMatchDetails = new MatchDetails();
 
     // parameter for shortName = teamShortName AND for the team id = teamId
     public static Map<String, Map<String, Object>> selectedTeamsMap = new HashMap<>();
@@ -40,8 +43,14 @@ public class TeamMatchVariables {
     // key vairable will be home team fullname and awayTeam Full name
     public static Map<String, ArrayList<CurrentMatchPlayers>> selectedPlayersMap = new HashMap<>();
 
-    // selected Players from both the team and key will be the team full name
+    // selected Players from both the team and key will be the team full name  selected Players from both the team
     public static Map<String, ArrayList<String>> selectedPlayersIntoMap = new HashMap<>();
+    
+    // selected players from both the team for shortName key is teamFullName and valueList is ArrayList of shortname of selected players
+    public static Map<String, ArrayList<String>> selectedPlayersShortNameIntoMap = new HashMap<>();
+    
+    // key is stadium name and value is city in which the stadium is located
+    public static Map<String, String> stadiumsMap = new HashMap<>();
 
     public static int homeTeamId, awayTeamId;
 }

@@ -11,6 +11,7 @@ import com.scoring.globalvariables.TeamMatchVariables;
 import com.scoring.reference.bean.BothTeamPlayers;
 import com.scoring.reference.bean.IndividualPlayerBean;
 import com.scoring.services.TeamOperationsAndServices;
+import com.scoring.threadOperations.CommonThreadOperations;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,6 +39,7 @@ public class PlayerSelectionForm extends javax.swing.JFrame {
     private Map<String, ArrayList<CurrentMatchPlayers>> selectedPlayersMapList = new HashMap<>();
 
     private PlayersBean playerBeanObject = null;
+    private boolean isLoadAtBoolean = false;
 
 //    private ArrayList<CurrentMatchPlayers> currentSelectedPlayersList;
     private Map<String, ArrayList<String>> selectedPlayersIntoMap = new HashMap<>();
@@ -51,6 +53,10 @@ public class PlayerSelectionForm extends javax.swing.JFrame {
 
         if (!TeamMatchVariables.bothTeamPlayersGlobalMap.isEmpty()) {
             allPlayersMap = TeamMatchVariables.bothTeamPlayersGlobalMap;
+
+            // edited 17-05-2024 for getting the  list from global variable it was having some problem when the 
+            // team name is changed for selecting the values
+            selectedPlayersMapList = TeamMatchVariables.selectedPlayersMap;
         }
 
 //        getPlayersOfBothTeam();
@@ -96,16 +102,18 @@ public class PlayerSelectionForm extends javax.swing.JFrame {
         selectedTeamToAddPlayers = TeamMatchVariables.homeTeam;
 
 //        currentSelectedPlayersList = selectedPlayersMapList.get(selectedTeamToAddPlayers);
-        addPlayersToList(TeamMatchVariables.homeTeam);
+        // if the players are already selected and need to modify again after selecting the 
+        addPlayersToList(TeamMatchVariables.homeTeam, true);    // true is is loading at initial of loading of the page
 
     }
 
     // to add all the players to list of selected team type
-    private void addPlayersToList(String teamName) {
+    private void addPlayersToList(String teamName, boolean isLoadingInitially) {
 
 //        System.out.println("team name is is  ::== " + teamName);
 //        System.out.println("Players bean list is is is ::======= " + allPlayersMap);
         playersBeanList = allPlayersMap.get(TeamMatchVariables.selectedTeamsMap.get(teamName).get("teamShortName"));
+
         DefaultListModel<String> defaultListModel = new DefaultListModel<>();
 
 //        System.out.println("Players bean list is is is ::======= " + playersBeanList.size());
@@ -118,17 +126,22 @@ public class PlayerSelectionForm extends javax.swing.JFrame {
 //        });
         player_selectionList.setModel(defaultListModel);
 
-        if (!TeamMatchVariables.selectedPlayersMap.isEmpty()) {
+        if (!selectedPlayersMapList.isEmpty()) {
 
-            selectedPlayersIntoMap = TeamMatchVariables.selectedPlayersIntoMap;
-            selectedPlayersMapList = TeamMatchVariables.selectedPlayersMap;
-
-            addPlayersToSelectedList();
+            // changed here as i was missing the first selected team players
+//            selectedPlayersIntoMap = TeamMatchVariables.selectedPlayersIntoMap;
+//            selectedPlayersMapList = TeamMatchVariables.selectedPlayersMap;
+            if (isLoadingInitially) {
+                addPlayersToSelectedList();
+            }
 
         } else {
+
             selectedPlayersMapList.put(TeamMatchVariables.homeTeam, new ArrayList<CurrentMatchPlayers>());
             selectedPlayersMapList.put(TeamMatchVariables.awayTeam, new ArrayList<CurrentMatchPlayers>());
+
         }
+
     }
 
     private boolean playersOperations(String operType, String player) {
@@ -144,6 +157,7 @@ public class PlayerSelectionForm extends javax.swing.JFrame {
             ArrayList<CurrentMatchPlayers> currentMatchPlayersList = selectedPlayersMapList.get(selectedTeamToAddPlayers);
 
             if (operType == "ADD") {
+
                 currentMatchPlayersList.add(currentPlayers);
 
             } else if (operType == "REMOVE") {
@@ -153,11 +167,14 @@ public class PlayerSelectionForm extends javax.swing.JFrame {
             } else {
                 currentMatchPlayersList.clear();
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             operationComplete = true;
         }
+
+        System.out.println(selectedPlayersMapList);
 
         return operationComplete;
     }
@@ -293,7 +310,8 @@ public class PlayerSelectionForm extends javax.swing.JFrame {
 
         selectedTeamToAddPlayers = team_selection_list.getSelectedValue();
 
-        addPlayersToList(selectedTeamToAddPlayers);
+        addPlayersToList(selectedTeamToAddPlayers, false);
+
         addPlayersToSelectedList();
 
 //        currentSelectedPlayersList = selectedPlayersMapList.get(selectedTeamToAddPlayers);
@@ -310,6 +328,7 @@ public class PlayerSelectionForm extends javax.swing.JFrame {
             selectedPlArrayList.clear();
             addPlayersToSelectedList();
         }
+
     }//GEN-LAST:event_remove_allBtnActionPerformed
 
     private void player_selectionListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_player_selectionListValueChanged
@@ -426,6 +445,10 @@ public class PlayerSelectionForm extends javax.swing.JFrame {
 
         TeamMatchVariables.selectedPlayersIntoMap = selectedPlayersIntoMap;
         TeamMatchVariables.selectedPlayersMap = selectedPlayersMapList;
+        
+        
+        // here starting a thread so the players short name is added to the player list
+        new Thread(new CommonThreadOperations("ADD_PLAYERS_SHORTLIST", selectedPlayersMapList)).start();
 
         JOptionPane.showMessageDialog(this, "Both The Team Players Selected Will Be Saved", "Players Stored", JOptionPane.OK_OPTION);
 

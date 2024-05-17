@@ -21,7 +21,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "match_details")
-public class MatchDetails implements Serializable{
+public class MatchDetails implements Serializable {
 
     @Id
     @Column(length = 50)
@@ -52,20 +52,20 @@ public class MatchDetails implements Serializable{
     @Column(length = 50)
     private String home_town;
     @Column(length = 50)
-    private String statuim;
+    private String stadium;
     @Column(length = 50)
     private String venue_type;
-    private short first_innings_total;
-    private short second_innings_total;
-    private double first_innings_overs_played;
-    private double second_innings_overs_played;
-    private short first_innings_total_wickets;
-    private short second_innings_total_wickets;
+    @Column(length = 50)
+    private String first_innings_score;
+    @Column(length = 50)
+    private String second_innings_score;
     @Column(length = 50)
     private String result;
     private short match_no;
     @Column(length = 50)
     private String umpires;
+    @Column(length = 50)
+    private String city;
     @Column(length = 50)
     private String tv_umpires;
     private Date matchDate;
@@ -84,7 +84,7 @@ public class MatchDetails implements Serializable{
 
     @OneToMany(mappedBy = "matchDetails", cascade = CascadeType.ALL)
     private List<SecondInningsBowling> secondInningsBowlingList;
-    
+
     @OneToMany(mappedBy = "matchDetails", cascade = CascadeType.ALL)
     private List<SuperOvers> superOverses;
 
@@ -92,7 +92,7 @@ public class MatchDetails implements Serializable{
 
     }
 
-    public MatchDetails(String match_code, String matches_between, String home_team_name, String home_team_full_name, String away_team_name, String away_team_full_name, String team_versus, String toss_win_team, String toss_win_choose_type, short total_overs, String home_team_captain, String away_team_captain, String state, String home_town, String statuim, String venue_type, short first_innings_total, short second_innings_total, double first_innings_overs_played, double second_innings_overs_played, short first_innings_total_wickets, short second_innings_total_wickets, String result, short match_no, String umpires, String tv_umpires, Date matchDate, boolean super_over, short super_over_count, short reviews_remaining, List<FirstInningsBatting> firstInningsBattingList, List<FirstInningsBowling> firstInningsBowlingList, List<SecondInningsBatting> secondInningsBattingList, List<SecondInningsBowling> secondInningsBowlingList, List<SuperOvers> superOverses) {
+    public MatchDetails(String match_code, String matches_between, String home_team_name, String home_team_full_name, String away_team_name, String away_team_full_name, String team_versus, String toss_win_team, String toss_win_choose_type, short total_overs, String home_team_captain, String away_team_captain, String state, String home_town, String stadium, String venue_type, String first_innings_score, String second_innings_score, String result, short match_no, String umpires, String city, String tv_umpires, Date matchDate, boolean super_over, short super_over_count, short reviews_remaining, List<FirstInningsBatting> firstInningsBattingList, List<FirstInningsBowling> firstInningsBowlingList, List<SecondInningsBatting> secondInningsBattingList, List<SecondInningsBowling> secondInningsBowlingList, List<SuperOvers> superOverses) {
         this.match_code = match_code;
         this.matches_between = matches_between;
         this.home_team_name = home_team_name;
@@ -107,17 +107,14 @@ public class MatchDetails implements Serializable{
         this.away_team_captain = away_team_captain;
         this.state = state;
         this.home_town = home_town;
-        this.statuim = statuim;
+        this.stadium = stadium;
         this.venue_type = venue_type;
-        this.first_innings_total = first_innings_total;
-        this.second_innings_total = second_innings_total;
-        this.first_innings_overs_played = first_innings_overs_played;
-        this.second_innings_overs_played = second_innings_overs_played;
-        this.first_innings_total_wickets = first_innings_total_wickets;
-        this.second_innings_total_wickets = second_innings_total_wickets;
+        this.first_innings_score = first_innings_score;
+        this.second_innings_score = second_innings_score;
         this.result = result;
         this.match_no = match_no;
         this.umpires = umpires;
+        this.city = city;
         this.tv_umpires = tv_umpires;
         this.matchDate = matchDate;
         this.super_over = super_over;
@@ -129,8 +126,6 @@ public class MatchDetails implements Serializable{
         this.secondInningsBowlingList = secondInningsBowlingList;
         this.superOverses = superOverses;
     }
-
-
 
     public String getMatch_code() {
         return match_code;
@@ -244,12 +239,12 @@ public class MatchDetails implements Serializable{
         this.home_town = home_town;
     }
 
-    public String getStatuim() {
-        return statuim;
+    public String getStadium() {
+        return stadium;
     }
 
-    public void setStatuim(String statuim) {
-        this.statuim = statuim;
+    public void setStadium(String stadium) {
+        this.stadium = stadium;
     }
 
     public String getVenue_type() {
@@ -260,52 +255,20 @@ public class MatchDetails implements Serializable{
         this.venue_type = venue_type;
     }
 
-    public short getFirst_innings_total() {
-        return first_innings_total;
+    public String getFirst_innings_score() {
+        return first_innings_score;
     }
 
-    public void setFirst_innings_total(short first_innings_total) {
-        this.first_innings_total = first_innings_total;
+    public void setFirst_innings_score(String first_innings_score) {
+        this.first_innings_score = first_innings_score;
     }
 
-    public short getSecond_innings_total() {
-        return second_innings_total;
+    public String getSecond_innings_score() {
+        return second_innings_score;
     }
 
-    public void setSecond_innings_total(short second_innings_total) {
-        this.second_innings_total = second_innings_total;
-    }
-
-    public double getFirst_innings_overs_played() {
-        return first_innings_overs_played;
-    }
-
-    public void setFirst_innings_overs_played(double first_innings_overs_played) {
-        this.first_innings_overs_played = first_innings_overs_played;
-    }
-
-    public double getSecond_innings_overs_played() {
-        return second_innings_overs_played;
-    }
-
-    public void setSecond_innings_overs_played(double second_innings_overs_played) {
-        this.second_innings_overs_played = second_innings_overs_played;
-    }
-
-    public short getFirst_innings_total_wickets() {
-        return first_innings_total_wickets;
-    }
-
-    public void setFirst_innings_total_wickets(short first_innings_total_wickets) {
-        this.first_innings_total_wickets = first_innings_total_wickets;
-    }
-
-    public short getSecond_innings_total_wickets() {
-        return second_innings_total_wickets;
-    }
-
-    public void setSecond_innings_total_wickets(short second_innings_total_wickets) {
-        this.second_innings_total_wickets = second_innings_total_wickets;
+    public void setSecond_innings_score(String second_innings_score) {
+        this.second_innings_score = second_innings_score;
     }
 
     public String getResult() {
@@ -330,6 +293,14 @@ public class MatchDetails implements Serializable{
 
     public void setUmpires(String umpires) {
         this.umpires = umpires;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public String getTv_umpires() {
@@ -411,8 +382,7 @@ public class MatchDetails implements Serializable{
     public void setSuperOverses(List<SuperOvers> superOverses) {
         this.superOverses = superOverses;
     }
-    
-    
 
+    
 
 }

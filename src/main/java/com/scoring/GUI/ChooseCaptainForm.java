@@ -50,16 +50,23 @@ public class ChooseCaptainForm extends javax.swing.JFrame {
 
         TeamMatchVariables.selectedPlayersIntoMap.get(TeamMatchVariables.homeTeam).forEach((player) -> {
 
+            System.out.println("---------======------" + homeTeamCaptain + " = "+homeTeamWicketKeeper+ " = "+player);
             if (homeTeamCaptain != null
                     && homeTeamWicketKeeper != null
                     && player.equals(homeTeamWicketKeeper)
                     && player.equals(homeTeamCaptain)) {
+
+//                System.out.println("Inside both captain and WK Same :== ");
                 homeTeamDefaultListModel.addElement(player + " (C)" + "  (WK)");
             } else if (homeTeamCaptain != null && player.equals(homeTeamCaptain)) {
+
+//                System.out.println("Captain");
                 homeTeamDefaultListModel.addElement(player + "   (C)");
-            } else if (homeTeamCaptain != null && player.equals(homeTeamCaptain)) {
+            } else if (homeTeamWicketKeeper != null && player.equals(homeTeamWicketKeeper)) {
+//                System.out.println("Wicket Keeper");
                 homeTeamDefaultListModel.addElement(player + "   (WK)");
             } else {
+//                System.out.println("None");
                 homeTeamDefaultListModel.addElement(player);
             }
 
@@ -87,7 +94,7 @@ public class ChooseCaptainForm extends javax.swing.JFrame {
             }
         });
 
-        away_choosse_captainList.setModel(awayTeamDefaultListModel);
+        away_choose_captainList.setModel(awayTeamDefaultListModel);
 
     }
 
@@ -101,7 +108,7 @@ public class ChooseCaptainForm extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane3 = new javax.swing.JScrollPane();
-        away_choosse_captainList = new javax.swing.JList<>();
+        away_choose_captainList = new javax.swing.JList<>();
         jScrollPane4 = new javax.swing.JScrollPane();
         home_choose_CaptainList = new javax.swing.JList<>();
         choose_captainHeader = new javax.swing.JLabel();
@@ -113,16 +120,16 @@ public class ChooseCaptainForm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        away_choosse_captainList.setBackground(new java.awt.Color(116, 153, 152));
-        away_choosse_captainList.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        away_choosse_captainList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+        away_choose_captainList.setBackground(new java.awt.Color(116, 153, 152));
+        away_choose_captainList.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        away_choose_captainList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                away_choosse_captainListValueChanged(evt);
+                away_choose_captainListValueChanged(evt);
             }
         });
-        jScrollPane3.setViewportView(away_choosse_captainList);
+        jScrollPane3.setViewportView(away_choose_captainList);
 
-        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(482, 90, -1, 350));
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 90, 300, 350));
 
         home_choose_CaptainList.setBackground(new java.awt.Color(116, 153, 152));
         home_choose_CaptainList.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
@@ -133,16 +140,16 @@ public class ChooseCaptainForm extends javax.swing.JFrame {
         });
         jScrollPane4.setViewportView(home_choose_CaptainList);
 
-        getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 260, 350));
+        getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 300, 350));
 
         choose_captainHeader.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         choose_captainHeader.setForeground(new java.awt.Color(255, 232, 140));
         choose_captainHeader.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         choose_captainHeader.setText("Choose Captain");
-        getContentPane().add(choose_captainHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 230, 32));
+        getContentPane().add(choose_captainHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 10, 230, 32));
 
         choose_optionType.setText("Select Captain From Both The Teams");
-        getContentPane().add(choose_optionType, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 210, -1));
+        getContentPane().add(choose_optionType, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 50, 210, -1));
 
         choose_captainBtn.setText("Choose Captain");
         choose_captainBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -150,7 +157,7 @@ public class ChooseCaptainForm extends javax.swing.JFrame {
                 choose_captainBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(choose_captainBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 150, 150, 30));
+        getContentPane().add(choose_captainBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 150, 150, 30));
 
         choose_wkBtn.setText("Choose WK");
         choose_wkBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -158,7 +165,7 @@ public class ChooseCaptainForm extends javax.swing.JFrame {
                 choose_wkBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(choose_wkBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 250, 150, 30));
+        getContentPane().add(choose_wkBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, 150, 30));
 
         submt_captainBtn.setText("SUBMIT");
         submt_captainBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -166,40 +173,57 @@ public class ChooseCaptainForm extends javax.swing.JFrame {
                 submt_captainBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(submt_captainBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 460, 210, 30));
+        getContentPane().add(submt_captainBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 450, 210, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void away_choosse_captainListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_away_choosse_captainListValueChanged
+    private void away_choose_captainListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_away_choose_captainListValueChanged
         // TODO add your handling code here:
 
         if (evt.getValueIsAdjusting()) {
 
-            if (away_choosse_captainList.getSelectedValue() != null) {
+            if (away_choose_captainList.getSelectedValue() != null) {
                 if (isSelectCaptainActive) {
-                    awayTeamCaptain = away_choosse_captainList.getSelectedValue();
+                    awayTeamCaptain = away_choose_captainList.getSelectedValue();
+
+                    if (awayTeamCaptain.contains("(WK)")) {
+                        awayTeamCaptain = awayTeamCaptain.substring(0, awayTeamCaptain.indexOf("(")).trim();
+                    }
                 } else {
-                    awayTeamWicketKeeper = away_choosse_captainList.getSelectedValue();
+                    awayTeamWicketKeeper = away_choose_captainList.getSelectedValue();
+
+                    if (awayTeamWicketKeeper.contains("(C)")) {
+                        awayTeamWicketKeeper = awayTeamWicketKeeper.substring(0, awayTeamWicketKeeper.indexOf("(")).trim();
+                    }
                 }
 
-                System.out.println("Selected Value :: === " + away_choosse_captainList.getSelectedValue());
+                System.out.println("Selected Value :: === " + away_choose_captainList.getSelectedValue());
 
                 addAwayTeamCaptain();
             }
         }
 
-    }//GEN-LAST:event_away_choosse_captainListValueChanged
+    }//GEN-LAST:event_away_choose_captainListValueChanged
 
     private void home_choose_CaptainListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_home_choose_CaptainListValueChanged
-        // TODO add your handling code here:
 
+        // TODO add your handling code here:
         if (evt.getValueIsAdjusting()) {
             if (home_choose_CaptainList.getSelectedValue() != null) {
                 if (isSelectCaptainActive) {
                     homeTeamCaptain = home_choose_CaptainList.getSelectedValue();
+
+                    if (homeTeamCaptain.contains("(WK)")) {
+                        homeTeamCaptain = homeTeamCaptain.substring(0, homeTeamCaptain.indexOf("(")).trim();
+                    }
+
                 } else {
                     homeTeamWicketKeeper = home_choose_CaptainList.getSelectedValue();
+
+                    if (homeTeamWicketKeeper.contains("(C)")) {
+                        homeTeamWicketKeeper = homeTeamWicketKeeper.substring(0, homeTeamWicketKeeper.indexOf("(")).trim();
+                    }
                 }
 
                 System.out.println("is selection active for captain := " + (isSelectCaptainActive) + " "
@@ -291,7 +315,7 @@ public class ChooseCaptainForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList<String> away_choosse_captainList;
+    private javax.swing.JList<String> away_choose_captainList;
     private javax.swing.JButton choose_captainBtn;
     private javax.swing.JLabel choose_captainHeader;
     private javax.swing.JLabel choose_optionType;

@@ -38,6 +38,7 @@ public class TeamOperationsAndServices {
                 Map<String, Object> teamList = new HashMap<String, Object>();
                 teamList.put("teamShortName", TeamBean.getTeam_name());
                 teamList.put("teamId", TeamBean.getTeam_id());
+                TeamMatchVariables.stadiumsMap.put(TeamBean.getHome_stadium(), TeamBean.getHometown());
 
                 TeamMatchVariables.selectedTeamsMap.put(TeamBean.getTeam_full_name(), teamList);
 

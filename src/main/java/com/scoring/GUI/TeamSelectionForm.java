@@ -93,8 +93,7 @@ public class TeamSelectionForm extends javax.swing.JFrame {
 
     }
 
-    
-        private void getPlayersOfBothTeam() {
+    private void getPlayersOfBothTeam() {
 
         ArrayList<Integer> teamIdList = new ArrayList<Integer>() {
             {
@@ -112,10 +111,10 @@ public class TeamSelectionForm extends javax.swing.JFrame {
 
 //        allPlayersMap = teamOperationsAndServices.bothTeamPlayers(teamIdList, teamNameList);
 //        TeamMatchVariables.bothTeamPlayersGlobalMap = allPlayersMap;
-        
-         new GetAllPlayersThreadOperations(teamIdList, teamNameList);
-        
+        new GetAllPlayersThreadOperations(teamIdList, teamNameList);
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -241,14 +240,14 @@ public class TeamSelectionForm extends javax.swing.JFrame {
             System.out.println("Current match code is is is ===========" + currentMatchCode);
 
             TeamMatchVariables.matchCode = currentMatchCode;
-            MatchDetails matchDetails = new MatchDetails();
+//            MatchDetails matchDetails = new MatchDetails();
 
-            matchDetails.setMatch_code(currentMatchCode);
-            matchDetails.setHome_team_name(hTeamName);
-            matchDetails.setHome_team_full_name(selected_hometeam);
+            TeamMatchVariables.currentMatchDetails.setMatch_code(currentMatchCode);
+            TeamMatchVariables.currentMatchDetails.setHome_team_name(hTeamName);
+            TeamMatchVariables.currentMatchDetails.setHome_team_full_name(selected_hometeam);
 
-            matchDetails.setAway_team_name(aTeamName);
-            matchDetails.setAway_team_full_name(selected_awayteam);
+            TeamMatchVariables.currentMatchDetails.setAway_team_name(aTeamName);
+            TeamMatchVariables.currentMatchDetails.setAway_team_full_name(selected_awayteam);
 
             TeamMatchVariables.homeTeamId = Integer.valueOf(String.valueOf(TeamMatchVariables.selectedTeamsMap.get(selected_hometeam).get("teamId")));
             TeamMatchVariables.awayTeamId = Integer.valueOf(String.valueOf(TeamMatchVariables.selectedTeamsMap.get(selected_awayteam).get("teamId")));
@@ -256,7 +255,7 @@ public class TeamSelectionForm extends javax.swing.JFrame {
             TeamMatchVariables.homeTeamShortName = hTeamName;
             TeamMatchVariables.awayTeamShortName = aTeamName;
 
-            TeamMatchVariables.selectedTeamsObjectMap.put(currentMatchCode, matchDetails);
+//            TeamMatchVariables.currentMatchDetails = matchDetails;
             getPlayersOfBothTeam();
             this.setVisible(false);
 

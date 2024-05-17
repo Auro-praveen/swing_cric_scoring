@@ -5,10 +5,19 @@
  */
 package com.scoring.GUI;
 
+import com.scoring.GUI.panels.TossConfirmPanel;
+import com.scoring.globalvariables.GlobalVariables;
 import com.scoring.globalvariables.TeamMatchVariables;
 import com.scoring.threadOperations.BeforeMatchThreadOperatins;
 import java.awt.Color;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Map;
+import java.util.Set;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,6 +30,9 @@ public class MainScoringForm extends javax.swing.JFrame {
      */
     private BeforeMatchThreadOperatins beforeMatchThreadOperatins;
 
+    private String stadimName = null;
+    private String stadiumCity = null;
+
     public MainScoringForm() {
 
         initComponents();
@@ -29,9 +41,14 @@ public class MainScoringForm extends javax.swing.JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         loadOperations();
+        match_confirm_panel.setBackground(new Color(66, 125, 102));
+        match_confirm_panel.setBounds(50, 50, 1200, 620);
+        match_confirm_panel.setVisible(false);
 
         beforeMatchThreadOperatins = new BeforeMatchThreadOperatins();
         beforeMatchThreadOperatins.callBeforeMatchThread();
+        
+        GlobalVariables.mainScoringForm = this;
     }
 
     private void loadOperations() {
@@ -104,6 +121,31 @@ public class MainScoringForm extends javax.swing.JFrame {
         match_list = new javax.swing.JList<>();
         settings_scrollpane = new javax.swing.JScrollPane();
         settings_list = new javax.swing.JList<>();
+        match_confirm_panel = new javax.swing.JPanel();
+        month = new javax.swing.JTextField();
+        date = new javax.swing.JTextField();
+        year = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        home_team_field = new javax.swing.JTextField();
+        away_team_field = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        total_innings_over = new javax.swing.JTextField();
+        stadium_combo_list = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
+        stadium_city = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        tv_umpire = new javax.swing.JTextField();
+        on_field_ump1 = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        onfield_ump2 = new javax.swing.JTextField();
+        confirm_match_btn = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        match_no = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         menu_btn = new javax.swing.JMenu();
         edit_menuBtn = new javax.swing.JMenu();
@@ -160,6 +202,11 @@ public class MainScoringForm extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        match_list.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                match_listValueChanged(evt);
+            }
+        });
         match_scrollpane.setViewportView(match_list);
 
         getContentPane().add(match_scrollpane, new org.netbeans.lib.awtextra.AbsoluteConstraints(329, 0, -1, -1));
@@ -174,6 +221,83 @@ public class MainScoringForm extends javax.swing.JFrame {
         settings_scrollpane.setViewportView(settings_list);
 
         getContentPane().add(settings_scrollpane, new org.netbeans.lib.awtextra.AbsoluteConstraints(432, 0, 100, -1));
+
+        match_confirm_panel.setBackground(new java.awt.Color(204, 204, 255));
+        match_confirm_panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        month.setToolTipText("Month");
+        match_confirm_panel.add(month, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 30, 30));
+
+        date.setToolTipText("Date");
+        match_confirm_panel.add(date, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 30, 30));
+
+        year.setToolTipText("Year");
+        match_confirm_panel.add(year, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, 70, 30));
+
+        jLabel1.setText("Date :");
+        match_confirm_panel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 100, -1));
+        match_confirm_panel.add(home_team_field, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 200, 30));
+        match_confirm_panel.add(away_team_field, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 110, 200, 30));
+
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Match Between");
+        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        match_confirm_panel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 190, 20));
+
+        jLabel3.setText("VS");
+        match_confirm_panel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 90, -1, 20));
+
+        jLabel4.setText("Total Overs :");
+        match_confirm_panel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 70, 30));
+        match_confirm_panel.add(total_innings_over, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 50, 30));
+
+        stadium_combo_list.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                stadium_combo_listItemStateChanged(evt);
+            }
+        });
+        stadium_combo_list.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stadium_combo_listActionPerformed(evt);
+            }
+        });
+        match_confirm_panel.add(stadium_combo_list, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 220, 30));
+
+        jLabel5.setText("Stadium");
+        match_confirm_panel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 110, -1));
+        match_confirm_panel.add(stadium_city, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, 150, 30));
+
+        jLabel6.setText("On Field Umpires");
+        match_confirm_panel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 120, 20));
+        match_confirm_panel.add(tv_umpire, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, 150, 30));
+        match_confirm_panel.add(on_field_ump1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 150, 30));
+
+        jLabel7.setText("1");
+        match_confirm_panel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 20, 20));
+
+        jLabel8.setText("2");
+        match_confirm_panel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, 20, 20));
+
+        jLabel9.setText("TV Umpires");
+        match_confirm_panel.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 110, 20));
+        match_confirm_panel.add(onfield_ump2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 290, 150, 30));
+
+        confirm_match_btn.setText("CONFIRM");
+        confirm_match_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirm_match_btnActionPerformed(evt);
+            }
+        });
+        match_confirm_panel.add(confirm_match_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 403, 160, 30));
+
+        jLabel10.setText("city");
+        match_confirm_panel.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, -1, -1));
+
+        jLabel11.setText("Match No :");
+        match_confirm_panel.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 20, -1, 30));
+        match_confirm_panel.add(match_no, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 20, 50, 30));
+
+        getContentPane().add(match_confirm_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1300, 600));
 
         jMenuBar1.setBackground(new java.awt.Color(106, 130, 138));
         jMenuBar1.setForeground(new java.awt.Color(255, 255, 255));
@@ -324,7 +448,100 @@ public class MainScoringForm extends javax.swing.JFrame {
 
     }//GEN-LAST:event_teams_listValueChanged
 
+    private void match_listValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_match_listValueChanged
+        // TODO add your handling code here:
+
+        if (evt.getValueIsAdjusting()) {
+
+            if (match_list.getSelectedValue().equals("Start Match")) {
+                match_confirm_panel.setVisible(true);
+                match_scrollpane.setVisible(false);
+
+                loadStadiumsToComboList();
+
+            }
+        }
+
+    }//GEN-LAST:event_match_listValueChanged
+
+    private void confirm_match_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirm_match_btnActionPerformed
+        // TODO add your handling code here:
+
+        if (match_no.getText() != null && date.getText() != null && month.getText() != null && year.getText() != null
+                && stadium_combo_list.getSelectedItem() != null) {
+
+            TeamMatchVariables.currentMatchDetails.setMatch_no(Short.valueOf(match_no.getText()));
+
+            Date matchDate = getSqlDate(date.getText() + "-" + month.getText() + "-" + year.getText());
+
+            TeamMatchVariables.currentMatchDetails.setMatchDate(matchDate);
+
+            TeamMatchVariables.currentMatchDetails.setStadium(stadium_combo_list.getSelectedItem().toString());
+            TeamMatchVariables.currentMatchDetails.setCity(stadium_city.getText());
+            TeamMatchVariables.currentMatchDetails.setTv_umpires(tv_umpire.getText());
+            TeamMatchVariables.currentMatchDetails.setUmpires(on_field_ump1.getText() + " " + onfield_ump2.getText());
+            match_confirm_panel.setVisible(false);
+          
+
+            try {
+                this.add(new TossConfirmPanel());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            
+        } else {
+            JOptionPane.showMessageDialog(this, "Please Enter Th Required Fields To Continue", "Some Fields Are Emtpty", JOptionPane.ERROR_MESSAGE);
+        }
+
+
+    }//GEN-LAST:event_confirm_match_btnActionPerformed
+
+    private void stadium_combo_listItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_stadium_combo_listItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_stadium_combo_listItemStateChanged
+
+    private void stadium_combo_listActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stadium_combo_listActionPerformed
+        // TODO add your handling code here:
+        stadimName = stadium_combo_list.getSelectedItem().toString();
+        stadiumCity = TeamMatchVariables.stadiumsMap.get(stadimName);
+
+        stadium_city.setText(stadiumCity);
+    }//GEN-LAST:event_stadium_combo_listActionPerformed
+
+    public static Date getSqlDate(String stringDate) {
+        
+        System.out.println(" = - = - = - = - = - = - = - = - = - = - = - = - =" +stringDate);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        Date sqlDate = null;
+        try {
+            java.util.Date utlDate = sdf.parse(stringDate);
+            sqlDate = new Date(utlDate.getTime());
+
+        } catch (Exception e) {
+            System.out.println("date format error");
+            e.printStackTrace();
+        }
+
+        return sqlDate;
+
+    }
+
+    private void loadStadiumsToComboList() {
+        
+        home_team_field.setText(TeamMatchVariables.homeTeam);
+        away_team_field.setText(TeamMatchVariables.awayTeam);
+
+//        DefaultComboBoxModel<String> defaultComboBoxModel = new DefaultComboBoxModel<>();
+        for (String stadium : TeamMatchVariables.stadiumsMap.keySet()) {
+//            defaultComboBoxModel.addElement(stadium);
+            stadium_combo_list.addItem(stadium);
+        }
+
+    }
+
     /**
+     *
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -360,21 +577,46 @@ public class MainScoringForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField away_team_field;
+    private javax.swing.JButton confirm_match_btn;
+    private javax.swing.JTextField date;
     private javax.swing.JList<String> edit_list;
     private javax.swing.JMenu edit_menuBtn;
     private javax.swing.JScrollPane edit_scrollpane;
+    private javax.swing.JTextField home_team_field;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel match_confirm_panel;
     private javax.swing.JList<String> match_list;
     private javax.swing.JMenu match_menuBtn;
+    private javax.swing.JTextField match_no;
     private javax.swing.JScrollPane match_scrollpane;
     private javax.swing.JMenu menu_btn;
     private javax.swing.JList<String> menu_list;
     private javax.swing.JScrollPane menu_scrollpane;
+    private javax.swing.JTextField month;
+    private javax.swing.JTextField on_field_ump1;
+    private javax.swing.JTextField onfield_ump2;
     private javax.swing.JList<String> settings_list;
     private javax.swing.JMenu settings_menuBtn;
     private javax.swing.JScrollPane settings_scrollpane;
+    private javax.swing.JTextField stadium_city;
+    private javax.swing.JComboBox<String> stadium_combo_list;
     private javax.swing.JList<String> teams_list;
     private javax.swing.JMenu teams_menuBtn;
     private javax.swing.JScrollPane teams_scrollpane;
+    private javax.swing.JTextField total_innings_over;
+    private javax.swing.JTextField tv_umpire;
+    private javax.swing.JTextField year;
     // End of variables declaration//GEN-END:variables
 }
