@@ -3,10 +3,11 @@ com\scoring\reference\bean\BothTeamPlayers.class
 com\scoring\GUI\panels\SelectBatsmenPanel$3.class
 com\scoring\GUI\panels\SelectBatsmenPanel$6.class
 com\scoring\GUI\panels\SelectBatsmenPanel.class
-com\scoring\GUI\panels\TestFrame$2.class
 com\scoring\beans\SuperOvers.class
 com\scoring\GUI\MainScoringForm$14.class
+com\scoring\GUI\panels\SelectBatsmentAsLebel.class
 com\scoring\GUI\panels\TossConfirmPanel$2.class
+com\scoring\GUI\panels\SelectBatsmentAsLebel$1.class
 com\scoring\GUI\panels\TossConfirmPanel$5.class
 com\scoring\GUI\ChooseCaptainForm$1.class
 com\scoring\GUI\ScoringApp$1.class
@@ -36,8 +37,10 @@ com\scoring\GUI\PlayerSelectionForm$5.class
 com\scoring\GUI\MainScoringForm$5.class
 com\scoring\beans\TeamBean.class
 com\scoring\reference\bean\CurrentOversBean.class
+com\scoring\threadOperations\CommonThreadOperations.class
 com\scoring\GUI\TeamSelectionForm$2.class
 com\scoring\GUI\ChooseCaptainForm.class
+com\scoring\globalvariables\InningsGlobalVariable.class
 com\scoring\globalvariables\TeamMatchVariables.class
 com\scoring\GUI\ChooseCaptainForm$5.class
 com\scoring\GUI\PlayerSelectionForm$4.class
@@ -68,7 +71,6 @@ com\scoring\GUI\PlayerSelectionForm$1.class
 com\scoring\GUI\PlayerSelectionForm$7.class
 com\scoring\GUI\ScoringApp$2.class
 com\scoring\GUI\panels\TossConfirmPanel$4.class
-com\scoring\GUI\panels\TestFrame$3.class
 com\scoring\GUI\panels\TossConfirmPanel.class
 com\scoring\GUI\panels\VerifyDetailsPanel$4.class
 com\scoring\GUI\panels\SelectBatsmenPanel$1.class

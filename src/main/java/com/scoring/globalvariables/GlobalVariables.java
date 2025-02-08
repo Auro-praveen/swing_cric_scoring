@@ -26,6 +26,6 @@ public class GlobalVariables {
     public static String selecteLeagueType;
     
     public static JFrame mainScoringForm = new JFrame();
-    public static String tossOwnTeam, firstInningsBattingTeam, firstInningsBowlingTeam;
+    public static String tossOwnTeam, firstInningsBattingTeam, firstInningsBowlingTeam, tossOwnTeamDecision;
     
 }

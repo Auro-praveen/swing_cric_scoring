@@ -10,6 +10,7 @@ import com.scoring.globalvariables.TeamMatchVariables;
 import java.awt.Color;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import org.netbeans.lib.awtextra.AbsoluteConstraints;
 
 /**
  *
@@ -76,7 +77,7 @@ public class TossConfirmPanel extends javax.swing.JPanel {
         jLabel1.setText("Match Toss");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, 60, -1));
 
-        toss_field_panel.setBackground(new java.awt.Color(255, 204, 204));
+        toss_field_panel.setBackground(new java.awt.Color(255, 255, 255));
         toss_field_panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setText("Select The Toss Winning Team");
@@ -102,7 +103,7 @@ public class TossConfirmPanel extends javax.swing.JPanel {
 
         add(toss_field_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 330, 150));
 
-        toss_decision_panel.setBackground(new java.awt.Color(255, 204, 204));
+        toss_decision_panel.setBackground(new java.awt.Color(255, 255, 255));
         toss_decision_panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         chooseOption_header.setText("won the toss and choose to");
@@ -181,7 +182,7 @@ public class TossConfirmPanel extends javax.swing.JPanel {
 
             this.setVisible(false);
             GlobalVariables.mainScoringForm.remove(this);
-            GlobalVariables.mainScoringForm.add(new VerifyDetailsPanel());
+            GlobalVariables.mainScoringForm.add(new VerifyDetailsPanel(), new AbsoluteConstraints(50, 50, 1200, 620));
 
         } else {
             JOptionPane.showMessageDialog(this, "Please Select The Toss Own Team And What they Decided To Do First", "Please Select The Teams", JOptionPane.WARNING_MESSAGE);

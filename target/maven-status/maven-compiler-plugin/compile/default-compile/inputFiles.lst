@@ -6,8 +6,10 @@ D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scor
 D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\GUI\PlayerSelectionForm.java
 D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\beans\CurrentMatchPlayers.java
 D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\GUI\TeamSelectionForm.java
+D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\threadOperations\CommonThreadOperations.java
 D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\beans\PlayersBean.java
 D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\beans\SuperOverBatting.java
+D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\globalvariables\InningsGlobalVariable.java
 D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\GUI\panels\VerifyDetailsPanel.java
 D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\beans\MatchDetails.java
 D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\lckingtesting\AppMain.java
@@ -26,6 +28,7 @@ D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scor
 D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\dbOperations\ChoosingMatchOperations.java
 D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\services\CurrentPlayersService.java
 D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\globalvariables\GlobalVariables.java
+D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\GUI\panels\SelectBatsmentAsLebel.java
 D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\repositories\TournamentMatchesRepo.java
 D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\hibernate\utils\sessionService\HibernateUtils.java
 D:\Users\AuroLed\Documents\NetBeansProjects\lckingtesting\src\main\java\com\scoring\beans\FirstInningsBatting.java

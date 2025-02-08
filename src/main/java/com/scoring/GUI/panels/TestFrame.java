@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
+import org.netbeans.lib.awtextra.AbsoluteConstraints;
 
 /**
  *
@@ -21,6 +22,9 @@ public class TestFrame extends javax.swing.JFrame {
      * Creates new form TestFrame
      */
     
+    
+    String chooseType = "START_INNINGS" ; //STRIKER_BAT   NONSTRIKER_BAT     BOWLER   MINI_OVER_BOWLER   START_INNINGS
+    
     public TestFrame() {
         
         initComponents();
@@ -28,42 +32,13 @@ public class TestFrame extends javax.swing.JFrame {
         this.setBounds(0, 0, 1300, 720);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-//        this.add(new MainScoringPanel());
+        this.add(new SelectBatsmentAsLebel(chooseType), new AbsoluteConstraints(50, 50, 1000, 200));
 
-        loadToList();
+//        loadToList();
         
     }
     
     
-    private void loadToList() {
-        
-//        List<String> lists = new ArrayList<>();
-        
-        DefaultListModel<String> listModel = new DefaultListModel<>();
-        
-        int listInsertCount = 01;
-
-        for (int i = 1; i < 11; i++) {
-            listModel.addElement("Number " + i);
-            if (i % 5 == 0) {
-                
-                if (listInsertCount == 1) {
-                    list_1.setModel(listModel);
-                } else {
-                    list_2.setModel(listModel);
-                }
-                
-//                listModel.clear();
-                listModel = new DefaultListModel<>();
-                listInsertCount ++;
-//                listModel.clear();
-            }
-            
-        }
-        
-        
-        
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -74,31 +49,8 @@ public class TestFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        list_1 = new javax.swing.JList<>();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        list_2 = new javax.swing.JList<>();
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        list_1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(list_1);
-
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 140, 130));
-
-        list_2.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane2.setViewportView(list_2);
-
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 140, 130));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -139,9 +91,5 @@ public class TestFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JList<String> list_1;
-    private javax.swing.JList<String> list_2;
     // End of variables declaration//GEN-END:variables
 }

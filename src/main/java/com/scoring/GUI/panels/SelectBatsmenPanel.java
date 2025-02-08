@@ -268,6 +268,7 @@ public class SelectBatsmenPanel extends javax.swing.JPanel {
         selectedChar = batsmen_numberSelection.getText();
 
         try {
+            
             if (Integer.valueOf(selectedChar) > 0 && Integer.valueOf(selectedChar) <= batPlayersList.size()) {
                 selectedBatsmen = batPlayersList.get(Integer.valueOf(selectedChar) - 1);
 
@@ -275,6 +276,7 @@ public class SelectBatsmenPanel extends javax.swing.JPanel {
             } else {
                 JOptionPane.showMessageDialog(this, "Please Select Valid Number From The List", "Selection Invalid", JOptionPane.INFORMATION_MESSAGE);
             }
+            
         } catch (Exception e) {
             e.printStackTrace();
         }

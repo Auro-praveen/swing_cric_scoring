@@ -138,7 +138,7 @@ public class VerifyDetailsPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(away_teamList);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, 300, 270));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, 300, 320));
 
         home_teamList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -148,14 +148,15 @@ public class VerifyDetailsPanel extends javax.swing.JPanel {
         home_teamList.setToolTipText("");
         jScrollPane2.setViewportView(home_teamList);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 300, 270));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 300, 320));
 
         toss_result.setColumns(2);
         toss_result.setRows(2);
         toss_result.setWrapStyleWord(true);
+        toss_result.setPreferredSize(new java.awt.Dimension(40, 40));
         jScrollPane3.setViewportView(toss_result);
 
-        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 420, 310, 70));
+        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 460, 320, 80));
 
         proceedTo_scoreBtn.setText("PROCEED TO SCORING");
         proceedTo_scoreBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -163,7 +164,7 @@ public class VerifyDetailsPanel extends javax.swing.JPanel {
                 proceedTo_scoreBtnActionPerformed(evt);
             }
         });
-        add(proceedTo_scoreBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 510, 300, 30));
+        add(proceedTo_scoreBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 550, 300, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void home_teamNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_home_teamNameActionPerformed

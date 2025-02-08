@@ -18,6 +18,7 @@ import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import org.netbeans.lib.awtextra.AbsoluteConstraints;
 
 /**
  *
@@ -484,7 +485,7 @@ public class MainScoringForm extends javax.swing.JFrame {
           
 
             try {
-                this.add(new TossConfirmPanel());
+                this.add(new TossConfirmPanel(), new AbsoluteConstraints(50, 50, 1200, 620));
             } catch (Exception e) {
                 e.printStackTrace();
             }

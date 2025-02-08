@@ -5,8 +5,11 @@
  */
 package com.scoring.GUI.panels;
 
+import com.scoring.globalvariables.GlobalPanels;
 import com.scoring.globalvariables.GlobalVariables;
+import com.scoring.globalvariables.InningsGlobalVariable;
 import java.awt.Color;
+import org.netbeans.lib.awtextra.AbsoluteConstraints;
 
 /**
  *
@@ -18,19 +21,35 @@ public class MainScoringPanel extends javax.swing.JPanel {
      * Creates new form MainScoringPanel
      */
     public MainScoringPanel() {
-        
+
         initComponents();
-        
+
         this.setVisible(true);
         this.setBackground(new Color(66, 125, 102));
         this.setBounds(50, 50, 1200, 620);
-        
-        scoring_setting_panel.add(new SelectBatsmenPanel());
-        
+
+        scoring_setting_panel.add(new SelectBatsmentAsLebel("START_INNINGS"), new AbsoluteConstraints(1000, 200));
+        score_type_panel.setVisible(false);
+
+        GlobalPanels.main_score_type_panel = score_type_panel;
+
         Batting_team.setText(GlobalVariables.firstInningsBattingTeam);
         Bowling_team.setText(GlobalVariables.firstInningsBowlingTeam);
-        
-        
+
+        loadBatsmensToLayout();
+
+    }
+
+    public void loadBatsmensToLayout() {
+
+        batsman_A_name.setText(InningsGlobalVariable.strikerBatsman);
+        nonstriker_batsman.setText(InningsGlobalVariable.nonStrikerBatsman);
+        bowler_A_name.setText(InningsGlobalVariable.currentBowlerName);
+
+        if (InningsGlobalVariable.previousBowlerName != null) {
+            bowler_B_name.setText(InningsGlobalVariable.previousBowlerName);
+        }
+
     }
 
     /**
@@ -44,21 +63,101 @@ public class MainScoringPanel extends javax.swing.JPanel {
 
         jSeparator2 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
-        Bowling_team = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         first_batterPanel = new javax.swing.JPanel();
-        first_batterPanel1 = new javax.swing.JPanel();
-        second_batterPanel = new javax.swing.JPanel();
+        batsman_A_name = new javax.swing.JLabel();
+        striker_symbol = new javax.swing.JLabel();
+        batsman_A_runsballs = new javax.swing.JLabel();
+        player_A_fours = new javax.swing.JLabel();
+        fours1 = new javax.swing.JLabel();
+        player_A_six = new javax.swing.JLabel();
+        sixes1 = new javax.swing.JLabel();
+        sr1 = new javax.swing.JLabel();
+        player_A_strikerRate = new javax.swing.JLabel();
+        last_wicket_player = new javax.swing.JPanel();
+        nonstriker_batsman = new javax.swing.JLabel();
+        lastwicket_batsmane_runs = new javax.swing.JLabel();
+        lastBatsman_four = new javax.swing.JLabel();
+        fours = new javax.swing.JLabel();
+        lastbatsman_six = new javax.swing.JLabel();
+        sixes = new javax.swing.JLabel();
+        sr = new javax.swing.JLabel();
+        last_batsman_strikerRate = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        Batting_team = new javax.swing.JTextField();
-        current_bowler = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
+        current_bowlerPanel = new javax.swing.JPanel();
+        bowler_A_name = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        bowler_A_overs = new javax.swing.JLabel();
+        player_A_maiden = new javax.swing.JLabel();
+        player_A_wickets = new javax.swing.JLabel();
+        player_A_noball = new javax.swing.JLabel();
+        player_A_wideball = new javax.swing.JLabel();
+        player_A_noballextras = new javax.swing.JLabel();
+        player_A_wideballextras = new javax.swing.JLabel();
+        player_A_foursgiven = new javax.swing.JLabel();
+        player_A_sixgiven = new javax.swing.JLabel();
+        bowler_A_runsgiven = new javax.swing.JLabel();
+        player_A_economy = new javax.swing.JLabel();
+        previous_overPanel = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
         scoring_setting_panel = new javax.swing.JPanel();
-        enter_runs_panel = new javax.swing.JPanel();
-        runs_entered_field = new javax.swing.JTextField();
-        jLabel14 = new javax.swing.JLabel();
-        score_info_panel = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        entered_extras_field = new javax.swing.JTextField();
+        jLabel21 = new javax.swing.JLabel();
+        entered_extras_field1 = new javax.swing.JTextField();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
+        entered_extras_field2 = new javax.swing.JTextField();
+        entered_extras_field3 = new javax.swing.JTextField();
+        entered_extras_field4 = new javax.swing.JTextField();
+        jLabel35 = new javax.swing.JLabel();
+        entered_extras_field5 = new javax.swing.JTextField();
+        Batting_team = new javax.swing.JLabel();
+        Bowling_team = new javax.swing.JLabel();
+        second_batterPanel1 = new javax.swing.JPanel();
+        batsman_B_name = new javax.swing.JLabel();
+        nonstriker_symbol1 = new javax.swing.JLabel();
+        batsman_B_runsBalls = new javax.swing.JLabel();
+        player_B_fours = new javax.swing.JLabel();
+        fours2 = new javax.swing.JLabel();
+        player_B_success = new javax.swing.JLabel();
+        sixes2 = new javax.swing.JLabel();
+        sr2 = new javax.swing.JLabel();
+        player_B_strikeRate = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        prev_over_label = new javax.swing.JLabel();
+        this_over_label = new javax.swing.JLabel();
+        Previous_bowlerPanel = new javax.swing.JPanel();
+        bowler_B_name = new javax.swing.JLabel();
+        bowler_B_overs = new javax.swing.JLabel();
+        player_B_maiden = new javax.swing.JLabel();
+        player_B_runsgiven = new javax.swing.JLabel();
+        player_B_wickets = new javax.swing.JLabel();
+        player_B_noball = new javax.swing.JLabel();
+        player_B_wideball = new javax.swing.JLabel();
+        player_B_noballextras = new javax.swing.JLabel();
+        player_B_wideballextras = new javax.swing.JLabel();
+        player_B_foursgiven = new javax.swing.JLabel();
+        player_B_sixgiven = new javax.swing.JLabel();
+        player_B_economy = new javax.swing.JLabel();
+        this_overPanel = new javax.swing.JPanel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        total_overs_bowled = new javax.swing.JLabel();
+        score_type_panel = new javax.swing.JPanel();
         run_field = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -79,158 +178,553 @@ public class MainScoringPanel extends javax.swing.JPanel {
         run_field7 = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         run_field8 = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        run_field9 = new javax.swing.JTextField();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Scoring First Innings");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, 160, 22));
-        add(Bowling_team, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 300, 30));
 
-        jLabel2.setText("Batting Team :");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 80, 30));
+        jLabel2.setText("Batting : ");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 80, 30));
 
         first_batterPanel.setBackground(new java.awt.Color(153, 255, 153));
-        first_batterPanel.setLayout(new javax.swing.BoxLayout(first_batterPanel, javax.swing.BoxLayout.LINE_AXIS));
+        first_batterPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        first_batterPanel1.setBackground(new java.awt.Color(153, 255, 153));
-        first_batterPanel1.setLayout(new javax.swing.BoxLayout(first_batterPanel1, javax.swing.BoxLayout.LINE_AXIS));
-        first_batterPanel.add(first_batterPanel1);
+        batsman_A_name.setText("jLabel15");
+        first_batterPanel.add(batsman_A_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 170, 30));
 
-        add(first_batterPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 700, 30));
+        striker_symbol.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        striker_symbol.setText("*");
+        first_batterPanel.add(striker_symbol, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 20, 30));
 
-        second_batterPanel.setBackground(new java.awt.Color(153, 255, 153));
-        second_batterPanel.setLayout(new javax.swing.BoxLayout(second_batterPanel, javax.swing.BoxLayout.LINE_AXIS));
-        add(second_batterPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 700, 30));
+        batsman_A_runsballs.setText("0(0)");
+        first_batterPanel.add(batsman_A_runsballs, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 40, 30));
 
-        jLabel3.setText("Bowling Team :");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 80, 20));
-        add(Batting_team, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 300, 30));
+        player_A_fours.setText("99");
+        first_batterPanel.add(player_A_fours, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 20, 30));
 
-        current_bowler.setBackground(new java.awt.Color(153, 153, 255));
-        current_bowler.setLayout(new javax.swing.BoxLayout(current_bowler, javax.swing.BoxLayout.LINE_AXIS));
-        add(current_bowler, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 700, 30));
+        fours1.setText("x 4");
+        first_batterPanel.add(fours1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, 20, 30));
 
-        jPanel1.setBackground(new java.awt.Color(153, 153, 255));
-        jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.LINE_AXIS));
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 700, 30));
-        add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 1100, 10));
+        player_A_six.setText("99");
+        first_batterPanel.add(player_A_six, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 0, 20, 30));
+
+        sixes1.setText("x 6");
+        first_batterPanel.add(sixes1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 0, 20, 30));
+
+        sr1.setText("S/R : ");
+        first_batterPanel.add(sr1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 0, 30, 30));
+
+        player_A_strikerRate.setText("600.99");
+        first_batterPanel.add(player_A_strikerRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 0, 40, 30));
+
+        add(first_batterPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 700, 30));
+
+        last_wicket_player.setBackground(new java.awt.Color(153, 255, 153));
+        last_wicket_player.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        nonstriker_batsman.setText("jLabel15");
+        last_wicket_player.add(nonstriker_batsman, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 170, 30));
+
+        lastwicket_batsmane_runs.setText("0(0)");
+        last_wicket_player.add(lastwicket_batsmane_runs, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 40, 30));
+
+        lastBatsman_four.setText("99");
+        last_wicket_player.add(lastBatsman_four, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 20, 30));
+
+        fours.setText("x 4");
+        last_wicket_player.add(fours, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, 20, 30));
+
+        lastbatsman_six.setText("99");
+        last_wicket_player.add(lastbatsman_six, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 0, 20, 30));
+
+        sixes.setText("x 6");
+        last_wicket_player.add(sixes, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 0, 20, 30));
+
+        sr.setText("S/R : ");
+        last_wicket_player.add(sr, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 0, 30, 30));
+
+        last_batsman_strikerRate.setText("600.99");
+        last_wicket_player.add(last_batsman_strikerRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 0, 40, 30));
+
+        add(last_wicket_player, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 700, 30));
+
+        jLabel3.setText("Bowling  :");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 80, 20));
+
+        current_bowlerPanel.setBackground(new java.awt.Color(153, 153, 255));
+        current_bowlerPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        bowler_A_name.setText("jLabel16");
+        current_bowlerPanel.add(bowler_A_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 170, 30));
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel19.setText("*");
+        current_bowlerPanel.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 30, 30));
+
+        bowler_A_overs.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        bowler_A_overs.setText("10.9");
+        current_bowlerPanel.add(bowler_A_overs, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 0, 30, 30));
+
+        player_A_maiden.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        player_A_maiden.setText("9");
+        current_bowlerPanel.add(player_A_maiden, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 0, 20, 30));
+
+        player_A_wickets.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        player_A_wickets.setText("9");
+        current_bowlerPanel.add(player_A_wickets, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 20, 30));
+
+        player_A_noball.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        player_A_noball.setText("9");
+        current_bowlerPanel.add(player_A_noball, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 0, 20, 30));
+
+        player_A_wideball.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        player_A_wideball.setText("9");
+        current_bowlerPanel.add(player_A_wideball, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 0, 20, 30));
+
+        player_A_noballextras.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        player_A_noballextras.setText("9");
+        current_bowlerPanel.add(player_A_noballextras, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 0, 20, 30));
+
+        player_A_wideballextras.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        player_A_wideballextras.setText("9");
+        current_bowlerPanel.add(player_A_wideballextras, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 0, 20, 30));
+
+        player_A_foursgiven.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        player_A_foursgiven.setText("9");
+        current_bowlerPanel.add(player_A_foursgiven, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 0, 20, 30));
+
+        player_A_sixgiven.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        player_A_sixgiven.setText("9");
+        current_bowlerPanel.add(player_A_sixgiven, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 0, 20, 30));
+
+        bowler_A_runsgiven.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        bowler_A_runsgiven.setText("9");
+        current_bowlerPanel.add(bowler_A_runsgiven, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 20, 30));
+
+        player_A_economy.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        player_A_economy.setText("12.99");
+        current_bowlerPanel.add(player_A_economy, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 0, 30, 30));
+
+        add(current_bowlerPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 700, 30));
+
+        previous_overPanel.setBackground(new java.awt.Color(153, 153, 255));
+        previous_overPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        add(previous_overPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 340, 600, 30));
+        add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 1100, 20));
 
         scoring_setting_panel.setBackground(new java.awt.Color(204, 204, 204));
-        scoring_setting_panel.setLayout(new java.awt.GridBagLayout());
-        add(scoring_setting_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 1100, 300));
+        scoring_setting_panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        enter_runs_panel.setBackground(new java.awt.Color(255, 255, 102));
-        enter_runs_panel.setMinimumSize(new java.awt.Dimension(220, 60));
-        enter_runs_panel.setName(""); // NOI18N
-        enter_runs_panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        enter_runs_panel.add(runs_entered_field, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, 30, 30));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel14.setText("Enter Runs");
-        enter_runs_panel.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 110, 20));
+        jLabel17.setText("You Have Selected Extras ");
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, 140, -1));
 
-        add(enter_runs_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 250, 90, -1));
+        jLabel18.setText("Enter Your Option :");
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 100, 20));
+        jPanel1.add(entered_extras_field, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, 30, -1));
 
-        score_info_panel.setBackground(new java.awt.Color(255, 204, 153));
-        score_info_panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jLabel21.setText("PENALTIES : ");
+        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 40, -1, 20));
+
+        entered_extras_field1.setText("N");
+        entered_extras_field1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                entered_extras_field1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(entered_extras_field1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 40, 20, -1));
+
+        jLabel22.setText("WIDE :");
+        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, 20));
+
+        jLabel33.setText("BYES :");
+        jPanel1.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, -1, 20));
+
+        jLabel34.setText("LEG BYES :");
+        jPanel1.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 40, -1, 20));
+
+        entered_extras_field2.setText("W");
+        jPanel1.add(entered_extras_field2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 20, -1));
+
+        entered_extras_field3.setText("P");
+        jPanel1.add(entered_extras_field3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, 20, -1));
+
+        entered_extras_field4.setText("L");
+        jPanel1.add(entered_extras_field4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 40, 20, -1));
+
+        jLabel35.setText("NO BALL :");
+        jPanel1.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, -1, 20));
+
+        entered_extras_field5.setText("B");
+        jPanel1.add(entered_extras_field5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 20, -1));
+
+        scoring_setting_panel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 590, 130));
+
+        add(scoring_setting_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, 1100, 190));
+
+        Batting_team.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        Batting_team.setText("sdfsdfs");
+        add(Batting_team, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 210, 30));
+
+        Bowling_team.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        Bowling_team.setText("jLabel15");
+        add(Bowling_team, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 240, 20));
+
+        second_batterPanel1.setBackground(new java.awt.Color(153, 255, 153));
+        second_batterPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        batsman_B_name.setText("jLabel15");
+        second_batterPanel1.add(batsman_B_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 170, 30));
+
+        nonstriker_symbol1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        second_batterPanel1.add(nonstriker_symbol1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 20, 30));
+
+        batsman_B_runsBalls.setText("0(0)");
+        second_batterPanel1.add(batsman_B_runsBalls, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 40, 30));
+
+        player_B_fours.setText("99");
+        second_batterPanel1.add(player_B_fours, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 20, 30));
+
+        fours2.setText("x 4");
+        second_batterPanel1.add(fours2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, 20, 30));
+
+        player_B_success.setText("99");
+        second_batterPanel1.add(player_B_success, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 0, 20, 30));
+
+        sixes2.setText("x 6");
+        second_batterPanel1.add(sixes2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 0, 20, 30));
+
+        sr2.setText("S/R : ");
+        second_batterPanel1.add(sr2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 0, 30, 30));
+
+        player_B_strikeRate.setText("600.99");
+        second_batterPanel1.add(player_B_strikeRate, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 0, 40, 30));
+
+        add(second_batterPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 700, 30));
+
+        jLabel15.setText("Last Wicket");
+        add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 200, 20));
+
+        prev_over_label.setText("Previous Over : ");
+        add(prev_over_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 90, -1));
+
+        this_over_label.setText("This Over        :");
+        add(this_over_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, -1, -1));
+
+        Previous_bowlerPanel.setBackground(new java.awt.Color(153, 153, 255));
+        Previous_bowlerPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        bowler_B_name.setText("jLabel16");
+        Previous_bowlerPanel.add(bowler_B_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 170, 30));
+
+        bowler_B_overs.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        bowler_B_overs.setText("10.9");
+        Previous_bowlerPanel.add(bowler_B_overs, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 0, 30, 30));
+
+        player_B_maiden.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        player_B_maiden.setText("9");
+        Previous_bowlerPanel.add(player_B_maiden, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 0, 20, 30));
+
+        player_B_runsgiven.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        player_B_runsgiven.setText("9");
+        Previous_bowlerPanel.add(player_B_runsgiven, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 20, 30));
+
+        player_B_wickets.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        player_B_wickets.setText("9");
+        Previous_bowlerPanel.add(player_B_wickets, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 20, 30));
+
+        player_B_noball.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        player_B_noball.setText("9");
+        Previous_bowlerPanel.add(player_B_noball, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 0, 20, 30));
+
+        player_B_wideball.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        player_B_wideball.setText("9");
+        Previous_bowlerPanel.add(player_B_wideball, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 0, 20, 30));
+
+        player_B_noballextras.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        player_B_noballextras.setText("9");
+        Previous_bowlerPanel.add(player_B_noballextras, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 0, 20, 30));
+
+        player_B_wideballextras.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        player_B_wideballextras.setText("9");
+        Previous_bowlerPanel.add(player_B_wideballextras, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 0, 20, 30));
+
+        player_B_foursgiven.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        player_B_foursgiven.setText("9");
+        Previous_bowlerPanel.add(player_B_foursgiven, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 0, 20, 30));
+
+        player_B_sixgiven.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        player_B_sixgiven.setText("9");
+        Previous_bowlerPanel.add(player_B_sixgiven, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 0, 20, 30));
+
+        player_B_economy.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        player_B_economy.setText("12.99");
+        Previous_bowlerPanel.add(player_B_economy, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 0, 30, 30));
+
+        add(Previous_bowlerPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 700, -1));
+
+        this_overPanel.setBackground(new java.awt.Color(153, 153, 255));
+        this_overPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        add(this_overPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 600, 30));
+
+        jLabel20.setBackground(new java.awt.Color(255, 51, 102));
+        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel20.setText("economy");
+        add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 200, 50, 30));
+
+        jLabel23.setBackground(new java.awt.Color(255, 51, 102));
+        jLabel23.setText("O");
+        add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 200, 20, 30));
+
+        jLabel24.setBackground(new java.awt.Color(255, 51, 102));
+        jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel24.setText("R");
+        add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 200, 20, 30));
+
+        jLabel25.setBackground(new java.awt.Color(255, 51, 102));
+        jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel25.setText("M");
+        add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 200, 20, 30));
+
+        jLabel26.setBackground(new java.awt.Color(255, 51, 102));
+        jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel26.setText("W");
+        add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 200, 20, 30));
+
+        jLabel27.setBackground(new java.awt.Color(255, 51, 102));
+        jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel27.setText("NB");
+        add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 200, 20, 30));
+
+        jLabel28.setBackground(new java.awt.Color(255, 51, 102));
+        jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel28.setText("WB");
+        add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 200, 20, 30));
+
+        jLabel29.setBackground(new java.awt.Color(255, 51, 102));
+        jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel29.setText("NBE");
+        add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 200, 20, 30));
+
+        jLabel30.setBackground(new java.awt.Color(255, 51, 102));
+        jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel30.setText("WBE");
+        add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 200, 30, 30));
+
+        jLabel31.setBackground(new java.awt.Color(255, 51, 102));
+        jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel31.setText("4");
+        add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 200, 20, 30));
+
+        jLabel32.setBackground(new java.awt.Color(255, 51, 102));
+        jLabel32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel32.setText("6");
+        add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 200, 20, 30));
+
+        jLabel16.setText("Overs : ");
+        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 40, 30));
+
+        total_overs_bowled.setText("99.5");
+        add(total_overs_bowled, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 30, 30));
+
+        score_type_panel.setBackground(new java.awt.Color(255, 204, 153));
+        score_type_panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         run_field.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         run_field.setText("V");
         run_field.setPreferredSize(new java.awt.Dimension(20, 25));
-        score_info_panel.add(run_field, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 50, 20, -1));
+        score_type_panel.add(run_field, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 50, 20, -1));
 
         jLabel4.setText("VIEW INNINGS : ");
-        score_info_panel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, 90, 25));
+        score_type_panel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, 90, 25));
 
         jLabel5.setText("RUN :");
-        score_info_panel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 30, 25));
+        score_type_panel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 30, 25));
 
         jLabel6.setText("EXTRAS :");
-        score_info_panel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 50, 25));
+        score_type_panel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 50, 25));
 
         jLabel7.setText("SIX :");
-        score_info_panel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, 30, 25));
+        score_type_panel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, 30, 25));
 
         jLabel8.setText("FOUR :");
-        score_info_panel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, 40, 25));
+        score_type_panel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, 40, 25));
 
         jLabel9.setText("WICKET : ");
-        score_info_panel.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 50, 25));
+        score_type_panel.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 50, 25));
 
         jLabel10.setText("DOT :");
-        score_info_panel.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 10, 30, 25));
+        score_type_panel.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 10, 30, 25));
 
         run_field1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         run_field1.setText("R");
         run_field1.setPreferredSize(new java.awt.Dimension(20, 25));
-        score_info_panel.add(run_field1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 20, -1));
+        score_type_panel.add(run_field1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 20, -1));
 
         run_field2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         run_field2.setText("E");
         run_field2.setPreferredSize(new java.awt.Dimension(20, 25));
-        score_info_panel.add(run_field2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 20, -1));
+        score_type_panel.add(run_field2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 20, -1));
 
         run_field3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         run_field3.setText("S");
         run_field3.setPreferredSize(new java.awt.Dimension(20, 25));
-        score_info_panel.add(run_field3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 20, -1));
+        score_type_panel.add(run_field3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 20, -1));
 
         run_field4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         run_field4.setText("F");
         run_field4.setPreferredSize(new java.awt.Dimension(20, 25));
-        score_info_panel.add(run_field4, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, 20, -1));
+        score_type_panel.add(run_field4, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, 20, -1));
 
         run_field5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        run_field5.setText("W");
+        run_field5.setText("K");
         run_field5.setPreferredSize(new java.awt.Dimension(20, 25));
-        score_info_panel.add(run_field5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 20, -1));
+        score_type_panel.add(run_field5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 20, -1));
 
         run_field6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         run_field6.setText("D");
         run_field6.setPreferredSize(new java.awt.Dimension(20, 25));
-        score_info_panel.add(run_field6, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, 20, -1));
-        score_info_panel.add(entered_optionField, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 90, 30, 30));
+        score_type_panel.add(run_field6, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, 20, -1));
+
+        entered_optionField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                entered_optionFieldKeyReleased(evt);
+            }
+        });
+        score_type_panel.add(entered_optionField, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 90, 30, 30));
 
         jLabel11.setText("Choose Option Here : ");
-        score_info_panel.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 90, 110, 30));
+        score_type_panel.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 90, 110, 30));
 
         jLabel12.setText("END INNINGS :");
-        score_info_panel.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, 80, 25));
+        score_type_panel.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, 80, 25));
 
         run_field7.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        run_field7.setText("T");
+        run_field7.setText("P");
         run_field7.setPreferredSize(new java.awt.Dimension(20, 25));
-        score_info_panel.add(run_field7, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 10, 20, -1));
+        score_type_panel.add(run_field7, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 10, 20, -1));
 
-        jLabel13.setText("UNDO :");
-        score_info_panel.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, 50, 25));
+        jLabel13.setText("ALTER CHANGES :");
+        score_type_panel.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 100, 25));
 
         run_field8.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        run_field8.setText("U");
+        run_field8.setText("A");
         run_field8.setPreferredSize(new java.awt.Dimension(20, 25));
-        score_info_panel.add(run_field8, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 50, 20, -1));
+        score_type_panel.add(run_field8, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 20, -1));
 
-        add(score_info_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 200, 170, 40));
+        jLabel14.setText("UNDO :");
+        score_type_panel.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 50, 50, 25));
+
+        run_field9.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        run_field9.setText("U");
+        run_field9.setPreferredSize(new java.awt.Dimension(20, 25));
+        score_type_panel.add(run_field9, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, 20, -1));
+
+        add(score_type_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 250, 660, 130));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void entered_optionFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_entered_optionFieldKeyReleased
+        // TODO add your handling code here:
+        
+        String selectedKeyword = entered_optionField.getText();
+        
+        if (selectedKeyword.length() == 1) {
+            switch(selectedKeyword){
+                case "R" :
+                    System.out.println("Clicked on runs");
+                case "E" :
+                    System.out.println("Clicked on EXTRAS");
+                case "S" :
+                    System.out.println("Clicked on SIX");
+                case "F" :
+                    System.out.println("Clicked on FOUR");
+                    
+                case "K" :
+                    System.out.println("Clicked on WICKTES");
+                
+                case "D" :
+                    System.out.println("Clicked on DOTS");
+                
+                case "P" :
+                    System.out.println("Clicked on END OF INNINGS");
+                
+                case "A" :
+                    System.out.println("Clicked on ALTER CHANGES");
+                    
+                case "U" :
+                    System.out.println("Clicked on UNDO LAST");
+                
+                case "V" :
+                    System.out.println("Clicked on VIEW INNINGS");
+            }
+        }
+        
+    }//GEN-LAST:event_entered_optionFieldKeyReleased
+
+    private void entered_extras_field1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entered_extras_field1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_entered_extras_field1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Batting_team;
-    private javax.swing.JTextField Bowling_team;
-    private javax.swing.JPanel current_bowler;
-    private javax.swing.JPanel enter_runs_panel;
+    private javax.swing.JLabel Batting_team;
+    private javax.swing.JLabel Bowling_team;
+    private javax.swing.JPanel Previous_bowlerPanel;
+    public static javax.swing.JLabel batsman_A_name;
+    private javax.swing.JLabel batsman_A_runsballs;
+    public static javax.swing.JLabel batsman_B_name;
+    private javax.swing.JLabel batsman_B_runsBalls;
+    public static javax.swing.JLabel bowler_A_name;
+    private javax.swing.JLabel bowler_A_overs;
+    private javax.swing.JLabel bowler_A_runsgiven;
+    public static javax.swing.JLabel bowler_B_name;
+    private javax.swing.JLabel bowler_B_overs;
+    private javax.swing.JPanel current_bowlerPanel;
+    private javax.swing.JTextField entered_extras_field;
+    private javax.swing.JTextField entered_extras_field1;
+    private javax.swing.JTextField entered_extras_field2;
+    private javax.swing.JTextField entered_extras_field3;
+    private javax.swing.JTextField entered_extras_field4;
+    private javax.swing.JTextField entered_extras_field5;
     private javax.swing.JTextField entered_optionField;
     private javax.swing.JPanel first_batterPanel;
-    private javax.swing.JPanel first_batterPanel1;
+    private javax.swing.JLabel fours;
+    private javax.swing.JLabel fours1;
+    private javax.swing.JLabel fours2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -240,6 +734,40 @@ public class MainScoringPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel lastBatsman_four;
+    private javax.swing.JLabel last_batsman_strikerRate;
+    private javax.swing.JPanel last_wicket_player;
+    private javax.swing.JLabel lastbatsman_six;
+    private javax.swing.JLabel lastwicket_batsmane_runs;
+    public static javax.swing.JLabel nonstriker_batsman;
+    private javax.swing.JLabel nonstriker_symbol1;
+    private javax.swing.JLabel player_A_economy;
+    private javax.swing.JLabel player_A_fours;
+    private javax.swing.JLabel player_A_foursgiven;
+    private javax.swing.JLabel player_A_maiden;
+    private javax.swing.JLabel player_A_noball;
+    private javax.swing.JLabel player_A_noballextras;
+    private javax.swing.JLabel player_A_six;
+    private javax.swing.JLabel player_A_sixgiven;
+    private javax.swing.JLabel player_A_strikerRate;
+    private javax.swing.JLabel player_A_wickets;
+    private javax.swing.JLabel player_A_wideball;
+    private javax.swing.JLabel player_A_wideballextras;
+    private javax.swing.JLabel player_B_economy;
+    private javax.swing.JLabel player_B_fours;
+    private javax.swing.JLabel player_B_foursgiven;
+    private javax.swing.JLabel player_B_maiden;
+    private javax.swing.JLabel player_B_noball;
+    private javax.swing.JLabel player_B_noballextras;
+    private javax.swing.JLabel player_B_runsgiven;
+    private javax.swing.JLabel player_B_sixgiven;
+    private javax.swing.JLabel player_B_strikeRate;
+    private javax.swing.JLabel player_B_success;
+    private javax.swing.JLabel player_B_wickets;
+    private javax.swing.JLabel player_B_wideball;
+    private javax.swing.JLabel player_B_wideballextras;
+    private javax.swing.JLabel prev_over_label;
+    private javax.swing.JPanel previous_overPanel;
     private javax.swing.JTextField run_field;
     private javax.swing.JTextField run_field1;
     private javax.swing.JTextField run_field2;
@@ -249,9 +777,19 @@ public class MainScoringPanel extends javax.swing.JPanel {
     private javax.swing.JTextField run_field6;
     private javax.swing.JTextField run_field7;
     private javax.swing.JTextField run_field8;
-    private javax.swing.JTextField runs_entered_field;
-    private javax.swing.JPanel score_info_panel;
+    private javax.swing.JTextField run_field9;
+    private javax.swing.JPanel score_type_panel;
     private javax.swing.JPanel scoring_setting_panel;
-    private javax.swing.JPanel second_batterPanel;
+    private javax.swing.JPanel second_batterPanel1;
+    private javax.swing.JLabel sixes;
+    private javax.swing.JLabel sixes1;
+    private javax.swing.JLabel sixes2;
+    private javax.swing.JLabel sr;
+    private javax.swing.JLabel sr1;
+    private javax.swing.JLabel sr2;
+    private javax.swing.JLabel striker_symbol;
+    private javax.swing.JPanel this_overPanel;
+    private javax.swing.JLabel this_over_label;
+    private javax.swing.JLabel total_overs_bowled;
     // End of variables declaration//GEN-END:variables
 }
